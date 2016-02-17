@@ -14,6 +14,7 @@ namespace BrightNucleus\Shortcode;
 use BrightNucleus\Config\ConfigInterface;
 use BrightNucleus\Config\ConfigTrait;
 use BrightNucleus\Dependency\DependencyManagerInterface;
+use BrightNucleus\Exception\RuntimeException;
 
 /**
  * Shortcode Manager.
@@ -77,10 +78,24 @@ class ShortcodeManager {
 	 */
 	protected $shortcode_uis = [ ];
 
+	/**
+	 * Instantiate a ShortcodeManager object.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param DependencyManagerInterface $dependencies Dependencies that are
+	 *                                                 needed by the
+	 *                                                 shortcodes.
+	 * @param ConfigInterface            $config       Configuration to set up
+	 *                                                 the shortcodes.
+	 * @param null                       $config_key   Key of the subtree
+	 *                                                 inside of the config.
+	 * @throws RuntimeException If the config could not be processed.
+	 */
 	public function __construct(
+		DependencyManagerInterface $dependencies,
 		ConfigInterface $config,
-		$config_key = null,
-		DependencyManagerInterface $dependencies
+		$config_key = null
 	) {
 		$this->processConfig( $config, $config_key );
 
