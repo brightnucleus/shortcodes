@@ -128,11 +128,15 @@ class ShortcodeManager {
 		$shortcode_class       = $this->get_shortcode_class( $tag );
 		$shortcode_atts_parser = $this->get_shortcode_atts_parser_class( $tag );
 
+		$atts_parser = new $shortcode_atts_parser(
+			$this->config->getSubConfig( self::KEY_TAGS, $tag )
+		);
+
 		$this->shortcodes[] = new $shortcode_class(
 			$tag,
-			new $shortcode_atts_parser( $this->config ),
-			$this->dependencies,
-			$this->config
+			$this->config,
+			$atts_parser,
+			$this->dependencies
 		);
 
 		if ( $this->hasConfigKey( self::KEY_TAGS, $tag, self::KEY_UI ) ) {
@@ -185,9 +189,8 @@ class ShortcodeManager {
 
 		$this->shortcode_uis[] = new $shortcode_ui_class(
 			$tag,
-			$this->dependencies,
 			$this->config,
-			$this->get_config_key( $tag )
+			$this->dependencies
 		);
 	}
 
