@@ -73,7 +73,7 @@ class Shortcode implements ShortcodeInterface {
 	 *                                                    shortcode.
 	 * @param ConfigInterface              $config        Configuration
 	 *                                                    settings.
-	 * @param string                       $config_key    Optional. Key of the
+	 * @param string|null                  $config_key    Optional. Key of the
 	 *                                                    config subtree.
 	 * @throws RuntimeException If the config could not be processed.
 	 */
