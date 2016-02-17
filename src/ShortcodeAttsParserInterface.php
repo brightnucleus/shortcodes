@@ -27,7 +27,8 @@ interface ShortcodeAttsParserInterface {
 	 * @since 0.1.0
 	 *
 	 * @param  array $atts Attributes passed to the shortcode.
+	 * @param string $tag  Tag of the shortcode.
 	 * @return array       Validated attributes of the shortcode.
 	 */
-	public function parse_atts( $atts );
+	public function parse_atts( $atts, $tag );
 }

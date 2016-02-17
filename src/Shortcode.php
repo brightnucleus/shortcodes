@@ -128,7 +128,7 @@ class Shortcode implements ShortcodeInterface {
 	 * @return string               The shortcode's HTML output.
 	 */
 	public function render( $atts, $content = null ) {
-		$atts = $this->atts_parser->parse_atts( $atts );
+		$atts = $this->atts_parser->parse_atts( $atts, $this->get_tag() );
 
 		$this->dependencies->enqueue( $atts );
 

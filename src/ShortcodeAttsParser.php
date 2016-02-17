@@ -28,32 +28,17 @@ class ShortcodeAttsParser implements ShortcodeAttsParserInterface {
 	use ConfigTrait;
 
 	/**
-	 * Shortcode handler.
-	 *
-	 * @since 0.1.0
-	 *
-	 * @var ShortcodeInterface
-	 */
-	protected $shortcode;
-
-	/**
 	 * Instantiate the shortcode attributes parser object
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param ShortcodeInterface $shortcode  Name of the shortcode handler.
-	 * @param ConfigInterface    $config     Configuration array to
+	 * @param ConfigInterface $config        Configuration array to
 	 *                                       parametrize the shortcode
 	 *                                       attributes.
 	 * @throws RuntimeException If the config could not be processed.
 	 */
-	public function __construct(
-		ShortcodeInterface $shortcode,
-		ConfigInterface $config
-	) {
-
+	public function __construct( ConfigInterface $config ) {
 		$this->processConfig( $config );
-		$this->shortcode = $shortcode;
 	}
 
 	/**
@@ -62,13 +47,14 @@ class ShortcodeAttsParser implements ShortcodeAttsParserInterface {
 	 * @since 0.1.0
 	 *
 	 * @param  array $atts Attributes passed to the shortcode.
+	 * @param string $tag  Tag of the shortcode.
 	 * @return array       Validated attributes of the shortcode.
 	 */
-	public function parse_atts( $atts ) {
+	public function parse_atts( $atts, $tag ) {
 		$atts = \shortcode_atts(
 			$this->default_atts(),
 			$this->validated_atts( $atts ),
-			$this->shortcode->get_tag()
+			$tag
 		);
 
 		return $atts;

@@ -125,13 +125,12 @@ class ShortcodeManager {
 	 * @param string $tag The tag of the shortcode to register.
 	 */
 	protected function init_shortcode( $tag ) {
-		$config_key            = $this->get_config_key( $tag );
 		$shortcode_class       = $this->get_shortcode_class( $tag );
 		$shortcode_atts_parser = $this->get_shortcode_atts_parser_class( $tag );
 
 		$this->shortcodes[] = new $shortcode_class(
 			$tag,
-			new $shortcode_atts_parser( $tag, $this->config, $config_key ),
+			new $shortcode_atts_parser( $this->config ),
 			$this->dependencies,
 			$this->config
 		);
@@ -139,18 +138,6 @@ class ShortcodeManager {
 		if ( $this->hasConfigKey( self::KEY_TAGS, $tag, self::KEY_UI ) ) {
 			$this->init_shortcode_ui( $tag );
 		}
-	}
-
-	/**
-	 * Get the configuration key for a specific shortcode tag.
-	 *
-	 * @since 0.1.0
-	 *
-	 * @param string $tag The shortcode tag to get the config key for.
-	 * @return string Configuration key.
-	 */
-	protected function get_config_key( $tag ) {
-		return self::KEY_TAGS . self::CONFIG_SEPARATOR . $tag;
 	}
 
 	/**
