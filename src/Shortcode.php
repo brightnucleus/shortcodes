@@ -38,7 +38,7 @@ class Shortcode implements ShortcodeInterface {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @var array
+	 * @var string
 	 */
 	protected $shortcode_tag;
 
