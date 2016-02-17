@@ -61,13 +61,13 @@ class ShortcodeManager {
 	protected $shortcodes = [ ];
 
 	/**
-	 * Collection of DependencyManagerInterface objects.
+	 * DependencyManagerInterface implementation.
 	 *
 	 * @since 0.1.0
 	 *
-	 * @var DependencyManagerInterface[]
+	 * @var DependencyManagerInterface
 	 */
-	protected $dependencies = [ ];
+	protected $dependencies;
 
 	/**
 	 * Collection of ShortcodeUIInterface objects.
