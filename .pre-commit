@@ -61,7 +61,7 @@ else
 fi
 
 # fetch all changed php files and validate them
-files=$(git diff-index --name-only --diff-filter=ACMR $against | grep '\.php$')
+files=$(git diff-index --name-only --cached --diff-filter=ACMR $against | grep '\.php$')
 if [ -n "$files" ]; then
 
 	for file in $files; do
