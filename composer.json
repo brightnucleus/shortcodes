@@ -15,9 +15,9 @@
 	],
 	"require": {
 		"beberlei/assert": "~2.4",
-		"brightnucleus/config": "0.1.*",
+		"brightnucleus/config": "0.2.*",
 		"brightnucleus/exceptions": "0.1.*",
-		"brightnucleus/dependencies": "0.1.*",
+		"brightnucleus/dependencies": "0.2.*",
 		"brightnucleus/contracts": "0.1.*"
 	},
 	"autoload": {

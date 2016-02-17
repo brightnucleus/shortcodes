@@ -67,27 +67,24 @@ class Shortcode implements ShortcodeInterface {
 	 *
 	 * @param string                       $shortcode_tag Tag that identifies
 	 *                                                    the shortcode.
+	 * @param ConfigInterface              $config        Configuration
+	 *                                                    settings.
 	 * @param ShortcodeAttsParserInterface $atts_parser   Attributes parser and
 	 *                                                    validator.
 	 * @param DependencyManagerInterface   $dependencies  Dependencies of the
 	 *                                                    shortcode.
-	 * @param ConfigInterface              $config        Configuration
-	 *                                                    settings.
-	 * @param string|null                  $config_key    Optional. Key of the
-	 *                                                    config subtree.
 	 * @throws RuntimeException If the config could not be processed.
 	 */
 	public function __construct(
 		$shortcode_tag,
-		ShortcodeAttsParserInterface $atts_parser,
-		DependencyManagerInterface $dependencies,
 		ConfigInterface $config,
-		$config_key = null
+		ShortcodeAttsParserInterface $atts_parser,
+		DependencyManagerInterface $dependencies
 	) {
 
 		Assert\that( $shortcode_tag )->string()->notEmpty();
 
-		$this->processConfig( $config, $config_key );
+		$this->processConfig( $config );
 
 		$this->shortcode_tag = $shortcode_tag;
 		$this->atts_parser   = $atts_parser;
@@ -99,7 +96,7 @@ class Shortcode implements ShortcodeInterface {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param mixed $args Optional. Arguments to pass on to the Regsitrable.
+	 * @param mixed $args Optional. Arguments to pass on to the Registrable.
 	 *                    (Not used with Shortcode class)
 	 * @return void
 	 */

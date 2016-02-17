@@ -61,22 +61,22 @@
         },
         {
             "name": "brightnucleus/config",
-            "version": "v0.1.10",
+            "version": "v0.1.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/brightnucleus/config.git",
-                "reference": "0928e084394db04436d26cab76c09217128bd7aa"
+                "reference": "3415df5901fbf0f98d98fa9434be24a3054b3927"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brightnucleus/config/zipball/0928e084394db04436d26cab76c09217128bd7aa",
-                "reference": "0928e084394db04436d26cab76c09217128bd7aa",
+                "url": "https://api.github.com/repos/brightnucleus/config/zipball/3415df5901fbf0f98d98fa9434be24a3054b3927",
+                "reference": "3415df5901fbf0f98d98fa9434be24a3054b3927",
                 "shasum": ""
             },
             "require": {
-                "beberlei/assert": "~2.4",
+                "beberlei/assert": ">2",
                 "brightnucleus/exceptions": "0.1.*",
-                "symfony/options-resolver": "~3.0"
+                "symfony/options-resolver": ">2.8"
             },
             "require-dev": {
                 "phpunit/phpunit": "~4",
@@ -99,7 +99,7 @@
                 }
             ],
             "description": "Minimal, reusable Config component.",
-            "time": "2016-02-16 18:34:02"
+            "time": "2016-02-17 16:23:36"
         },
         {
             "name": "brightnucleus/contracts",
@@ -184,16 +184,16 @@
         },
         {
             "name": "brightnucleus/exceptions",
-            "version": "v0.1.0",
+            "version": "v0.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/brightnucleus/exceptions.git",
-                "reference": "aa65d1b7a13776cb3bebd9c93f0543cb0ae66900"
+                "reference": "db45d5b4557d947da26b5f759b3642e2e08c4cc6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brightnucleus/exceptions/zipball/aa65d1b7a13776cb3bebd9c93f0543cb0ae66900",
-                "reference": "aa65d1b7a13776cb3bebd9c93f0543cb0ae66900",
+                "url": "https://api.github.com/repos/brightnucleus/exceptions/zipball/db45d5b4557d947da26b5f759b3642e2e08c4cc6",
+                "reference": "db45d5b4557d947da26b5f759b3642e2e08c4cc6",
                 "shasum": ""
             },
             "require-dev": {
@@ -217,7 +217,7 @@
                 }
             ],
             "description": "Exceptions shared across Bright Nucleus components.",
-            "time": "2016-02-16 17:48:47"
+            "time": "2016-02-17 16:20:23"
         },
         {
             "name": "brightnucleus/invoker",

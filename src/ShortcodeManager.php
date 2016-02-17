@@ -88,16 +88,13 @@ class ShortcodeManager {
 	 *                                                 shortcodes.
 	 * @param ConfigInterface            $config       Configuration to set up
 	 *                                                 the shortcodes.
-	 * @param null                       $config_key   Key of the subtree
-	 *                                                 inside of the config.
 	 * @throws RuntimeException If the config could not be processed.
 	 */
 	public function __construct(
-		DependencyManagerInterface $dependencies,
 		ConfigInterface $config,
-		$config_key = null
+		DependencyManagerInterface $dependencies
 	) {
-		$this->processConfig( $config, $config_key );
+		$this->processConfig( $config );
 
 		if ( ! $this->hasConfigKey( self::KEY_TAGS ) ) {
 			return;
@@ -136,8 +133,7 @@ class ShortcodeManager {
 			$tag,
 			new $shortcode_atts_parser( $tag, $this->config, $config_key ),
 			$this->dependencies,
-			$this->config,
-			$config_key
+			$this->config
 		);
 
 		if ( $this->hasConfigKey( self::KEY_TAGS, $tag, self::KEY_UI ) ) {

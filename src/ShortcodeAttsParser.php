@@ -45,17 +45,14 @@ class ShortcodeAttsParser implements ShortcodeAttsParserInterface {
 	 * @param ConfigInterface    $config     Configuration array to
 	 *                                       parametrize the shortcode
 	 *                                       attributes.
-	 * @param string|null        $config_key Optional. Key of the
-	 *                                       configuration subtree.
 	 * @throws RuntimeException If the config could not be processed.
 	 */
 	public function __construct(
 		ShortcodeInterface $shortcode,
-		ConfigInterface $config,
-		$config_key = null
+		ConfigInterface $config
 	) {
 
-		$this->processConfig( $config, $config_key );
+		$this->processConfig( $config );
 		$this->shortcode = $shortcode;
 	}
 
@@ -88,13 +85,15 @@ class ShortcodeAttsParser implements ShortcodeAttsParserInterface {
 
 		$atts = array();
 
-		if ( array_key_exists( 'atts', $this->config ) ) {
-			array_walk( $this->config['atts'],
-				function ( $att_properties, $att_label ) use ( &$atts ) {
-					$atts[ $att_label ] = $att_properties['default'];
-				}
-			);
+		if ( ! $this->hasConfigKey( 'atts' ) ) {
+			return $atts;
 		}
+
+		array_walk( $this->getConfigKey( 'atts' ),
+			function ( $att_properties, $att_label ) use ( &$atts ) {
+				$atts[ $att_label ] = $att_properties['default'];
+			}
+		);
 
 		return $atts;
 	}
@@ -110,16 +109,18 @@ class ShortcodeAttsParser implements ShortcodeAttsParserInterface {
 	 */
 	protected function validated_atts( $atts ) {
 
-		if ( array_key_exists( 'atts', $this->config ) ) {
-			array_walk( $this->config['atts'],
-				function ( $att_properties, $att_label ) use ( &$atts ) {
-					if ( array_key_exists( $att_label, $atts ) ) {
-						$validate_function  = $att_properties['validate'];
-						$atts[ $att_label ] = $validate_function( $atts[ $att_label ] );
-					}
-				}
-			);
+		if ( ! $this->hasConfigKey( 'atts' ) ) {
+			return $atts;
 		}
+
+		array_walk( $this->getConfigKey( 'atts' ),
+			function ( $att_properties, $att_label ) use ( &$atts ) {
+				if ( array_key_exists( $att_label, $atts ) ) {
+					$validate_function  = $att_properties['validate'];
+					$atts[ $att_label ] = $validate_function( $atts[ $att_label ] );
+				}
+			}
+		);
 
 		return $atts;
 	}
