@@ -39,9 +39,9 @@ class ShortcodeManager {
 	/*
 	 * Default classes that are used when omitted from the config.
 	 */
-	const DEFAULT_SHORTCODE             = __NAMESPACE__ . '\Shortcode';
-	const DEFAULT_SHORTCODE_ATTS_PARSER = __NAMESPACE__ . '\ShortcodeAttsParser';
-	const DEFAULT_SHORTCODE_UI          = __NAMESPACE__ . '\ShortcodeUI';
+	const DEFAULT_SHORTCODE             = 'BrightNucleus\Shortcode\Shortcode';
+	const DEFAULT_SHORTCODE_ATTS_PARSER = 'BrightNucleus\Shortcode\ShortcodeAttsParser';
+	const DEFAULT_SHORTCODE_UI          = 'BrightNucleus\Shortcode\ShortcodeUI';
 
 	/*
 	 * The names of the configuration keys.
