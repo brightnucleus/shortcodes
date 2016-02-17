@@ -45,7 +45,7 @@ class ShortcodeAttsParser implements ShortcodeAttsParserInterface {
 	 * @param ConfigInterface    $config     Configuration array to
 	 *                                       parametrize the shortcode
 	 *                                       attributes.
-	 * @param string             $config_key Optional. Key of the
+	 * @param string|null        $config_key Optional. Key of the
 	 *                                       configuration subtree.
 	 * @throws RuntimeException If the config could not be processed.
 	 */
