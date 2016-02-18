@@ -203,11 +203,12 @@ class ShortcodeManager {
 	 *
 	 * @since 0.1.0
 	 *
+	 * @param mixed $context Optional. Context information to pass to shortcode.
 	 * @return void
 	 */
-	public function register() {
-		$template = $this->get_page_template();
-		$context  = [ 'page_template' => $template ];
+	public function register( $context = null ) {
+		$context                  = $this->validate_context( $context );
+		$context['page_template'] = $this->get_page_template();;
 
 		array_walk( $this->shortcodes,
 			function ( $shortcode ) use ( $context ) {
@@ -220,6 +221,21 @@ class ShortcodeManager {
 			'register_shortcode_ui',
 			[ $this, 'register_shortcode_ui', ]
 		);
+	}
+
+	/**
+	 * Validate the context to make sure it is an array.
+	 *
+	 * @since 0.2.3
+	 *
+	 * @param mixed $context The context as passed in by WordPress.
+	 * @return array Validated context.
+	 */
+	protected function validate_context( $context ) {
+		if ( is_string( $context ) ) {
+			return [ 'wp_context' => $context ];
+		}
+		return (array) $context;
 	}
 
 	/**

@@ -56,9 +56,18 @@ class Shortcode implements ShortcodeInterface {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @var DependencyManagerInterface
+	 * @var DependencyManager
 	 */
 	protected $dependencies;
+
+	/**
+	 * Cache context information so we can pass it on to the render() method.
+	 *
+	 * @var
+	 *
+	 * @since 0.2.3
+	 */
+	protected $context;
 
 	/**
 	 * Instantiate Basic Shortcode.
@@ -68,7 +77,7 @@ class Shortcode implements ShortcodeInterface {
 	 * @param string                 $shortcode_tag Tag that identifies the
 	 *                                              shortcode.
 	 * @param ConfigInterface        $config        Configuration settings.
-	 *                                              Attributes parser and
+	 * @param ShortcodeAttsParser    $atts_parser   Attributes parser and
 	 *                                              validator.
 	 * @param DependencyManager|null $dependencies  Optional. Dependencies of
 	 *                                              the shortcode.
@@ -95,14 +104,15 @@ class Shortcode implements ShortcodeInterface {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param mixed $args Optional. Arguments to pass on to the Registrable.
-	 *                    (Not used with Shortcode class)
+	 * @param mixed $context Optional. Arguments to pass on to the Registrable.
 	 * @return void
 	 */
-	public function register( $args = null ) {
-		if ( ! $this->is_needed( $args ) ) {
+	public function register( $context = null ) {
+		if ( ! $this->is_needed( $context ) ) {
 			return;
 		}
+		$this->context = $context;
+
 		\add_shortcode( $this->get_tag(), [ $this, 'render' ] );
 	}
 
@@ -154,7 +164,8 @@ class Shortcode implements ShortcodeInterface {
 	 * @return string               The shortcode's HTML output.
 	 */
 	public function render( $atts, $content = null, $tag = null ) {
-		$atts = $this->atts_parser->parse_atts( $atts, $this->get_tag() );
+		$context = $this->context;
+		$atts    = $this->atts_parser->parse_atts( $atts, $this->get_tag() );
 
 		if ( $this->dependencies ) {
 			$this->dependencies->enqueue( $atts );
