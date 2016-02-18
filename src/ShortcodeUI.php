@@ -14,7 +14,7 @@ namespace BrightNucleus\Shortcode;
 use Assert;
 use BrightNucleus\Config\ConfigInterface;
 use BrightNucleus\Config\ConfigTrait;
-use BrightNucleus\Dependency\DependencyManagerInterface;
+use BrightNucleus\Dependency\DependencyManagerInterface as DependencyManager;
 use BrightNucleus\Exception\RuntimeException;
 
 /**
@@ -52,16 +52,16 @@ class ShortcodeUI implements ShortcodeUIInterface {
 	 *
 	 * @since 1.0.
 	 *
-	 * @param string                     $shortcode_tag Tag of the Shortcode.
-	 * @param ConfigInterface            $config        Configuration settings.
-	 * @param DependencyManagerInterface $dependencies  Dependencies that need
-	 *                                                  to be enqueued.
+	 * @param string                 $shortcode_tag Tag of the Shortcode.
+	 * @param ConfigInterface        $config        Configuration settings.
+	 * @param DependencyManager|null $dependencies  Optional. Dependencies that
+	 *                                              need to be enqueued.
 	 * @throws RuntimeException If the config could not be processed.
 	 */
 	public function __construct(
 		$shortcode_tag,
 		ConfigInterface $config,
-		DependencyManagerInterface $dependencies
+		DependencyManager $dependencies = null
 	) {
 		Assert\that( $shortcode_tag )->string()->notEmpty();
 

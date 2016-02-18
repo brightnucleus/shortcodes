@@ -14,7 +14,7 @@ namespace BrightNucleus\Shortcode;
 use Assert;
 use BrightNucleus\Config\ConfigInterface;
 use BrightNucleus\Config\ConfigTrait;
-use BrightNucleus\Dependency\DependencyManagerInterface;
+use BrightNucleus\Dependency\DependencyManagerInterface as DependencyManager;
 use BrightNucleus\Exception\DomainException;
 use BrightNucleus\Exception\RuntimeException;
 
@@ -65,21 +65,20 @@ class Shortcode implements ShortcodeInterface {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param string                       $shortcode_tag Tag that identifies
-	 *                                                    the shortcode.
-	 * @param ConfigInterface              $config        Configuration
-	 *                                                    settings.
-	 * @param ShortcodeAttsParserInterface $atts_parser   Attributes parser and
-	 *                                                    validator.
-	 * @param DependencyManagerInterface   $dependencies  Dependencies of the
-	 *                                                    shortcode.
+	 * @param string                 $shortcode_tag Tag that identifies the
+	 *                                              shortcode.
+	 * @param ConfigInterface        $config        Configuration settings.
+	 *                                              Attributes parser and
+	 *                                              validator.
+	 * @param DependencyManager|null $dependencies  Optional. Dependencies of
+	 *                                              the shortcode.
 	 * @throws RuntimeException If the config could not be processed.
 	 */
 	public function __construct(
 		$shortcode_tag,
 		ConfigInterface $config,
-		ShortcodeAttsParserInterface $atts_parser,
-		DependencyManagerInterface $dependencies
+		ShortcodeAttsParser $atts_parser,
+		DependencyManager $dependencies = null
 	) {
 
 		Assert\that( $shortcode_tag )->string()->notEmpty();
@@ -157,7 +156,9 @@ class Shortcode implements ShortcodeInterface {
 	public function render( $atts, $content = null, $tag = null ) {
 		$atts = $this->atts_parser->parse_atts( $atts, $this->get_tag() );
 
-		$this->dependencies->enqueue( $atts );
+		if ( $this->dependencies ) {
+			$this->dependencies->enqueue( $atts );
+		}
 
 		if ( ! $this->hasConfigKey( 'view' ) ) {
 			return '';
