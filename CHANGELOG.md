@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.2.3] - 2016-02-18
+### Added
+- `ShortcodeManager` now properly manages passing `$context` information to its shortcodes.
+
+### Fixed
+- Docblock fixes for `ShortcodeManager::__construct()`.
+
 ## [0.2.2] - 2016-02-18
 ### Fixed
 - `DependencyManager` is now optional and you can pass in `null` or omit the argument completely.
@@ -32,6 +39,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial release to GitHub.
 
+[0.2.3]: https://github.com/brightnucleus/shortcodes/compare/v0.2.2...v0.2.3
 [0.2.2]: https://github.com/brightnucleus/shortcodes/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/brightnucleus/shortcodes/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/brightnucleus/shortcodes/compare/v0.1.2...v0.2.0
