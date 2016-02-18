@@ -208,7 +208,7 @@ class ShortcodeManager {
 	 */
 	public function register( $context = null ) {
 		$context                  = $this->validate_context( $context );
-		$context['page_template'] = $this->get_page_template();;
+		$context['page_template'] = $this->get_page_template();
 
 		array_walk( $this->shortcodes,
 			function ( $shortcode ) use ( $context ) {
