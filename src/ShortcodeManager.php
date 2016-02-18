@@ -82,10 +82,10 @@ class ShortcodeManager {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param DependencyManager|null $dependencies Optional. Dependencies that
-	 *                                             are needed by the shortcodes.
 	 * @param ConfigInterface        $config       Configuration to set up the
 	 *                                             shortcodes.
+	 * @param DependencyManager|null $dependencies Optional. Dependencies that
+	 *                                             are needed by the shortcodes.
 	 * @throws RuntimeException If the config could not be processed.
 	 */
 	public function __construct(
