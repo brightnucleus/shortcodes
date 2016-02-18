@@ -179,7 +179,7 @@ class ShortcodeManager {
 
 		$this->shortcode_uis[] = new $shortcode_ui_class(
 			$tag,
-			$this->config->getSubConfig( $tag ),
+			$this->config->getSubConfig( $tag, self::KEY_UI ),
 			$this->dependencies
 		);
 	}
