@@ -91,12 +91,12 @@ class ShortcodeUI implements ShortcodeUIInterface {
 	}
 
 	/**
-	 * Register the shortcode UI handler function with WordPress.
+	 * Check whether the shortcode UI is needed.
 	 *
 	 * @since 0.1.0
 	 *
 	 * @param mixed $context Data about the context in which the call is made.
-	 * @return boolean Whether the shortcode is needed or not.
+	 * @return boolean Whether the shortcode UI is needed or not.
 	 */
 	protected function is_needed( $context = null ) {
 
@@ -105,8 +105,8 @@ class ShortcodeUI implements ShortcodeUIInterface {
 			: false;
 
 		// Return true if a callable 'is_needed' evaluates to true.
-		if ( is_callable( $is_needed ) && $is_needed( $context ) ) {
-			return true;
+		if ( is_callable( $is_needed ) ) {
+			return $is_needed( $context );
 		}
 
 		return (bool) $is_needed;

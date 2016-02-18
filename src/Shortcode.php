@@ -101,7 +101,31 @@ class Shortcode implements ShortcodeInterface {
 	 * @return void
 	 */
 	public function register( $args = null ) {
+		if ( ! $this->is_needed( $args ) ) {
+			return;
+		}
 		\add_shortcode( $this->get_tag(), [ $this, 'render' ] );
+	}
+
+	/**
+	 * Check whether the shortcode is needed.
+	 *
+	 * @since 0.2.0
+	 *
+	 * @param mixed $context Data about the context in which the call is made.
+	 * @return boolean Whether the shortcode is needed or not.
+	 */
+	protected function is_needed( $context = null ) {
+
+		$is_needed = $this->hasConfigKey( 'is_needed' )
+			? $this->getConfigKey( 'is_needed' )
+			: false;
+
+		if ( is_callable( $is_needed ) ) {
+			return $is_needed( $context );
+		}
+
+		return (bool) $is_needed;
 	}
 
 	/**
@@ -124,10 +148,13 @@ class Shortcode implements ShortcodeInterface {
 	 *
 	 * @param  array       $atts    Attributes to modify the standard behavior
 	 *                              of the shortcode.
-	 * @param  string|null $content Content between enclosing shortcodes.
+	 * @param  string|null $content Optional. Content between enclosing
+	 *                              shortcodes.
+	 * @param string|null  $tag     Optional. The tag of the shortcode to
+	 *                              render.
 	 * @return string               The shortcode's HTML output.
 	 */
-	public function render( $atts, $content = null ) {
+	public function render( $atts, $content = null, $tag = null ) {
 		$atts = $this->atts_parser->parse_atts( $atts, $this->get_tag() );
 
 		$this->dependencies->enqueue( $atts );

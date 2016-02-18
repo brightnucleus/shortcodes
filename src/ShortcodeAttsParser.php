@@ -53,7 +53,7 @@ class ShortcodeAttsParser implements ShortcodeAttsParserInterface {
 	public function parse_atts( $atts, $tag ) {
 		$atts = \shortcode_atts(
 			$this->default_atts(),
-			$this->validated_atts( $atts ),
+			$this->validated_atts( (array) $atts ),
 			$tag
 		);
 

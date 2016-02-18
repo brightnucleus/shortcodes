@@ -49,7 +49,6 @@ class ShortcodeManager {
 	const KEY_CUSTOM_ATTS_PARSER = 'custom_atts_parser';
 	const KEY_CUSTOM_CLASS       = 'custom_class';
 	const KEY_CUSTOM_UI          = 'custom_ui';
-	const KEY_TAGS               = 'tags';
 	const KEY_UI                 = 'ui';
 	/**
 	 * Collection of ShortcodeInterface objects.
@@ -95,11 +94,6 @@ class ShortcodeManager {
 		DependencyManagerInterface $dependencies
 	) {
 		$this->processConfig( $config );
-
-		if ( ! $this->hasConfigKey( self::KEY_TAGS ) ) {
-			return;
-		}
-
 		$this->dependencies = $dependencies;
 
 		$this->init_shortcodes();
@@ -111,8 +105,7 @@ class ShortcodeManager {
 	 * @since 0.1.0
 	 */
 	public function init_shortcodes() {
-
-		foreach ( $this->getConfigKey( self::KEY_TAGS ) as $tag => $config ) {
+		foreach ( $this->getConfigKeys() as $tag ) {
 			$this->init_shortcode( $tag );
 		}
 	}
@@ -128,18 +121,17 @@ class ShortcodeManager {
 		$shortcode_class       = $this->get_shortcode_class( $tag );
 		$shortcode_atts_parser = $this->get_shortcode_atts_parser_class( $tag );
 
-		$atts_parser = new $shortcode_atts_parser(
-			$this->config->getSubConfig( self::KEY_TAGS, $tag )
+		$atts_parser        = new $shortcode_atts_parser(
+			$this->config->getSubConfig( $tag )
 		);
-
 		$this->shortcodes[] = new $shortcode_class(
 			$tag,
-			$this->config,
+			$this->config->getSubConfig( $tag ),
 			$atts_parser,
 			$this->dependencies
 		);
 
-		if ( $this->hasConfigKey( self::KEY_TAGS, $tag, self::KEY_UI ) ) {
+		if ( $this->hasConfigKey( $tag, self::KEY_UI ) ) {
 			$this->init_shortcode_ui( $tag );
 		}
 	}
@@ -153,9 +145,8 @@ class ShortcodeManager {
 	 * @return string Class name of the Shortcode.
 	 */
 	protected function get_shortcode_class( $tag ) {
-		$key             = [ self::KEY_TAGS, $tag, self::KEY_CUSTOM_CLASS ];
-		$shortcode_class = $this->hasConfigKey( $key )
-			? $this->getConfigKey( $key )
+		$shortcode_class = $this->hasConfigKey( $tag, self::KEY_CUSTOM_CLASS )
+			? $this->getConfigKey( $tag, self::KEY_CUSTOM_CLASS )
 			: self::DEFAULT_SHORTCODE;
 		return $shortcode_class;
 	}
@@ -170,9 +161,8 @@ class ShortcodeManager {
 	 * @return string Class name of the ShortcodeAttsParser.
 	 */
 	protected function get_shortcode_atts_parser_class( $tag ) {
-		$key         = [ self::KEY_TAGS, $tag, self::KEY_CUSTOM_ATTS_PARSER ];
-		$atts_parser = $this->hasConfigKey( $key )
-			? $this->getConfigKey( $key )
+		$atts_parser = $this->hasConfigKey( $tag, self::KEY_CUSTOM_ATTS_PARSER )
+			? $this->getConfigKey( $tag, self::KEY_CUSTOM_ATTS_PARSER )
 			: self::DEFAULT_SHORTCODE_ATTS_PARSER;
 		return $atts_parser;
 	}
@@ -189,7 +179,7 @@ class ShortcodeManager {
 
 		$this->shortcode_uis[] = new $shortcode_ui_class(
 			$tag,
-			$this->config,
+			$this->config->getSubConfig( $tag ),
 			$this->dependencies
 		);
 	}
@@ -203,9 +193,8 @@ class ShortcodeManager {
 	 * @return string Class name of the ShortcodeUI.
 	 */
 	protected function get_shortcode_ui_class( $tag ) {
-		$key      = [ self::KEY_TAGS, $tag, self::KEY_CUSTOM_UI ];
-		$ui_class = $this->hasConfigKey( $key )
-			? $this->getConfigKey( $key )
+		$ui_class = $this->hasConfigKey( $tag, self::KEY_CUSTOM_UI )
+			? $this->getConfigKey( $tag, self::KEY_CUSTOM_UI )
 			: self::DEFAULT_SHORTCODE_UI;
 		return $ui_class;
 	}
@@ -218,32 +207,19 @@ class ShortcodeManager {
 	 * @return void
 	 */
 	public function register() {
-		array_walk( $this->shortcodes, function ( $shortcode ) {
-			/** @var ShortcodeInterface $shortcode */
-			$shortcode->register();
-		} );
+		$template = $this->get_page_template();
+		$context  = [ 'page_template' => $template ];
+
+		array_walk( $this->shortcodes,
+			function ( $shortcode ) use ( $context ) {
+				/** @var ShortcodeInterface $shortcode */
+				$shortcode->register( $context );
+			} );
 
 		// This hook only gets fired when Shortcode UI plugin is active.
 		\add_action(
 			'register_shortcode_ui',
 			[ $this, 'register_shortcode_ui', ]
-		);
-	}
-
-	/**
-	 * Register the shortcode UI handlers.
-	 *
-	 * @since 0.1.0
-	 */
-	public function register_shortcode_ui() {
-		$template = $this->get_page_template();
-		$context  = [ 'page_template' => $template ];
-
-		array_walk( $this->shortcode_uis,
-			function ( $shortcode_ui ) use ( $context ) {
-				/** @var ShortcodeUIInterface $shortcode_ui */
-				$shortcode_ui->register( $context );
-			}
 		);
 	}
 
@@ -261,5 +237,22 @@ class ShortcodeManager {
 			\get_page_template()
 		);
 		return $template;
+	}
+
+	/**
+	 * Register the shortcode UI handlers.
+	 *
+	 * @since 0.1.0
+	 */
+	public function register_shortcode_ui() {
+		$template = $this->get_page_template();
+		$context  = [ 'page_template' => $template ];
+
+		array_walk( $this->shortcode_uis,
+			function ( $shortcode_ui ) use ( $context ) {
+				/** @var ShortcodeUIInterface $shortcode_ui */
+				$shortcode_ui->register( $context );
+			}
+		);
 	}
 }
