@@ -75,7 +75,8 @@ class ShortcodeAttsParser implements ShortcodeAttsParserInterface {
 			return $atts;
 		}
 
-		array_walk( $this->getConfigKey( 'atts' ),
+		$atts_config = $this->getConfigKey( 'atts' );
+		array_walk( $atts_config,
 			function ( $att_properties, $att_label ) use ( &$atts ) {
 				$atts[ $att_label ] = $att_properties['default'];
 			}
@@ -99,7 +100,8 @@ class ShortcodeAttsParser implements ShortcodeAttsParserInterface {
 			return $atts;
 		}
 
-		array_walk( $this->getConfigKey( 'atts' ),
+		$atts_config = $this->getConfigKey( 'atts' );
+		array_walk( $atts_config,
 			function ( $att_properties, $att_label ) use ( &$atts ) {
 				if ( array_key_exists( $att_label, $atts ) ) {
 					$validate_function  = $att_properties['validate'];
