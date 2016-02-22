@@ -194,6 +194,6 @@ class Shortcode implements ShortcodeInterface {
 	 * @return string Rendered HTML.
 	 */
 	public function do_this( array $atts = [ ], $content = null ) {
-		\BrightNucleus\Shortcode\do_tag( $this->tag, $atts, $content );
+		\BrightNucleus\Shortcode\do_tag( $this->get_tag(), $atts, $content );
 	}
 }
