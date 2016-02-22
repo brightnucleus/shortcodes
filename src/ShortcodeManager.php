@@ -27,7 +27,7 @@ use BrightNucleus\Exception\RuntimeException;
  * @package BrightNucleus\Shortcode
  * @author  Alain Schlesser <alain.schlesser@gmail.com>
  */
-class ShortcodeManager {
+class ShortcodeManager implements ShortcodeManagerInterface {
 
 	use ConfigTrait;
 
