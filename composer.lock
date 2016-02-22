@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "43ba10a244736552c3ca7882212a0af6",
+    "hash": "6e4380236becc29be517ebe052f019b5",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -61,21 +61,21 @@
         },
         {
             "name": "brightnucleus/config",
-            "version": "v0.2.0",
+            "version": "v0.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/brightnucleus/config.git",
-                "reference": "79c5762367901f4c1fb0a99ee14965fbf54c64ba"
+                "reference": "541836fd1697006058987a69a4c878f06c7519e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brightnucleus/config/zipball/79c5762367901f4c1fb0a99ee14965fbf54c64ba",
-                "reference": "79c5762367901f4c1fb0a99ee14965fbf54c64ba",
+                "url": "https://api.github.com/repos/brightnucleus/config/zipball/541836fd1697006058987a69a4c878f06c7519e4",
+                "reference": "541836fd1697006058987a69a4c878f06c7519e4",
                 "shasum": ""
             },
             "require": {
                 "beberlei/assert": ">2",
-                "brightnucleus/exceptions": "0.1.*",
+                "brightnucleus/exceptions": "^0.2",
                 "symfony/options-resolver": ">2.8"
             },
             "require-dev": {
@@ -99,7 +99,7 @@
                 }
             ],
             "description": "Minimal, reusable Config component.",
-            "time": "2016-02-17 18:00:37"
+            "time": "2016-02-19 13:21:43"
         },
         {
             "name": "brightnucleus/contracts",
@@ -139,24 +139,24 @@
         },
         {
             "name": "brightnucleus/dependencies",
-            "version": "v0.2.0",
+            "version": "v0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/brightnucleus/dependencies.git",
-                "reference": "97ccddc75c004c9f6d2623e14a9f823322f9146d"
+                "reference": "f8ab54c2bd52def6529e22b1194e52e1309adf37"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brightnucleus/dependencies/zipball/97ccddc75c004c9f6d2623e14a9f823322f9146d",
-                "reference": "97ccddc75c004c9f6d2623e14a9f823322f9146d",
+                "url": "https://api.github.com/repos/brightnucleus/dependencies/zipball/f8ab54c2bd52def6529e22b1194e52e1309adf37",
+                "reference": "f8ab54c2bd52def6529e22b1194e52e1309adf37",
                 "shasum": ""
             },
             "require": {
                 "beberlei/assert": "~2.4",
-                "brightnucleus/config": "0.2.*",
-                "brightnucleus/contracts": "0.1.*",
-                "brightnucleus/exceptions": "0.1.*",
-                "brightnucleus/invoker": "0.1.*"
+                "brightnucleus/config": "^0.2",
+                "brightnucleus/contracts": "^0.1",
+                "brightnucleus/exceptions": "^0.2",
+                "brightnucleus/invoker": "^0.1"
             },
             "require-dev": {
                 "phpunit/phpunit": "~4",
@@ -180,20 +180,20 @@
                 }
             ],
             "description": "Config-driven WordPress dependencies.",
-            "time": "2016-02-17 18:12:34"
+            "time": "2016-02-18 10:34:13"
         },
         {
             "name": "brightnucleus/exceptions",
-            "version": "v0.1.1",
+            "version": "v0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/brightnucleus/exceptions.git",
-                "reference": "db45d5b4557d947da26b5f759b3642e2e08c4cc6"
+                "reference": "1ef7a33796067e21f67c5c34525432c7a1f44c41"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brightnucleus/exceptions/zipball/db45d5b4557d947da26b5f759b3642e2e08c4cc6",
-                "reference": "db45d5b4557d947da26b5f759b3642e2e08c4cc6",
+                "url": "https://api.github.com/repos/brightnucleus/exceptions/zipball/1ef7a33796067e21f67c5c34525432c7a1f44c41",
+                "reference": "1ef7a33796067e21f67c5c34525432c7a1f44c41",
                 "shasum": ""
             },
             "require-dev": {
@@ -217,24 +217,24 @@
                 }
             ],
             "description": "Exceptions shared across Bright Nucleus components.",
-            "time": "2016-02-17 16:20:23"
+            "time": "2016-02-18 09:40:22"
         },
         {
             "name": "brightnucleus/invoker",
-            "version": "v0.1.0",
+            "version": "v0.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/brightnucleus/invoker.git",
-                "reference": "3d935405c62f9b4c7e33f567a6a0e1525b74ae5d"
+                "reference": "7df7a939a282ad5ca29903dda6a28cbbe96082c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brightnucleus/invoker/zipball/3d935405c62f9b4c7e33f567a6a0e1525b74ae5d",
-                "reference": "3d935405c62f9b4c7e33f567a6a0e1525b74ae5d",
+                "url": "https://api.github.com/repos/brightnucleus/invoker/zipball/7df7a939a282ad5ca29903dda6a28cbbe96082c1",
+                "reference": "7df7a939a282ad5ca29903dda6a28cbbe96082c1",
                 "shasum": ""
             },
             "require": {
-                "brightnucleus/exceptions": "0.1.*"
+                "brightnucleus/exceptions": "^0.2"
             },
             "require-dev": {
                 "phpunit/phpunit": "~4",
@@ -257,7 +257,7 @@
                 }
             ],
             "description": "Function and method invoking traits that match named arguments in the right order.",
-            "time": "2016-02-17 10:23:22"
+            "time": "2016-02-18 12:30:59"
         },
         {
             "name": "symfony/options-resolver",
