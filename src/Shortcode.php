@@ -191,7 +191,7 @@ class Shortcode implements ShortcodeInterface {
 	 *
 	 * @param array       $atts    Array of attributes to pass to the shortcode.
 	 * @param string|null $content Inner content to pass to the shortcode.
-	 * @return string Rendered HTML.
+	 * @return string|false Rendered HTML.
 	 */
 	public function do_this( array $atts = [ ], $content = null ) {
 		\BrightNucleus\Shortcode\do_tag( $this->get_tag(), $atts, $content );

@@ -279,7 +279,7 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 	 * @param string $tag     Tag of the shortcode to execute.
 	 * @param array  $atts    Array of attributes to pass to the shortcode.
 	 * @param null   $content Inner content to pass to the shortcode.
-	 * @return string Rendered HTML.
+	 * @return string|false Rendered HTML.
 	 */
 	public function do_tag( $tag, array $atts = [ ], $content = null ) {
 		\BrightNucleus\Shortcode\do_tag( $tag, $atts, $content );
