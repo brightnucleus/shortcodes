@@ -17,7 +17,7 @@ namespace BrightNucleus\Shortcode;
  * This interface manages all the shortcodes that it gets passed within a
  * ConfigInterface.
  *
- * @since   0.2.1
+ * @since   0.2.4
  *
  * @package BrightNucleus\Shortcode
  * @author  Alain Schlesser <alain.schlesser@gmail.com>
