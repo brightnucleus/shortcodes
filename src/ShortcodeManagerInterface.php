@@ -38,6 +38,7 @@ interface ShortcodeManagerInterface {
 	 * Register the shortcode UI handlers.
 	 *
 	 * @since 0.1.0
+	 * @return void
 	 */
 	public function register_shortcode_ui();
 
