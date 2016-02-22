@@ -103,7 +103,7 @@ class ShortcodeManager {
 	 *
 	 * @since 0.1.0
 	 */
-	public function init_shortcodes() {
+	protected function init_shortcodes() {
 		foreach ( $this->getConfigKeys() as $tag ) {
 			$this->init_shortcode( $tag );
 		}

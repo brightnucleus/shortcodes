@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.2.4] - 2016-02-22
+### Added
+- Added `ShortcodeManagerInterface` to decouple the implementation from the software that uses it.
+
+### Fixed
+- `init_shortcodes()` is now protected instead of public.
+
 ## [0.2.3] - 2016-02-18
 ### Added
 - `ShortcodeManager` now properly manages passing `$context` information to its shortcodes.
@@ -39,6 +46,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial release to GitHub.
 
+[0.2.4]: https://github.com/brightnucleus/shortcodes/compare/v0.2.3...v0.2.4
 [0.2.3]: https://github.com/brightnucleus/shortcodes/compare/v0.2.2...v0.2.3
 [0.2.2]: https://github.com/brightnucleus/shortcodes/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/brightnucleus/shortcodes/compare/v0.2.0...v0.2.1
