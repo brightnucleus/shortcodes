@@ -5,6 +5,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [0.2.4] - 2016-02-22
 ### Added
 - Added `ShortcodeManagerInterface` to decouple the implementation from the software that uses it.
+- Added `do_tag()` function to execute shortcode tags directly. Works with external shortcodes too.
+- Added `ShortcodeManagerInterface::do_tag()` method as a convenience access to `do_tag()` function.
+- Added `ShortcodeInterface::do_this()` method as a convenience access to `do_tag()` function.
 
 ### Fixed
 - `init_shortcodes()` is now protected instead of public.

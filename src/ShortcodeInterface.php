@@ -43,4 +43,15 @@ interface ShortcodeInterface extends Registerable {
 	 * @return string Shortcode tag.
 	 */
 	public function get_tag();
+
+	/**
+	 * Execute this shortcode directly from code.
+	 *
+	 * @since 0.2.4
+	 *
+	 * @param array       $atts    Array of attributes to pass to the shortcode.
+	 * @param string|null $content Inner content to pass to the shortcode.
+	 * @return string Rendered HTML.
+	 */
+	public function do_this( array $atts = [ ], $content = null );
 }

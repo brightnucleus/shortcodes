@@ -40,4 +40,16 @@ interface ShortcodeManagerInterface {
 	 * @since 0.1.0
 	 */
 	public function register_shortcode_ui();
+
+	/**
+	 * Execute a specific shortcode directly from code.
+	 *
+	 * @since 0.2.4
+	 *
+	 * @param string      $tag     Tag of the shortcode to execute.
+	 * @param array       $atts    Array of attributes to pass to the shortcode.
+	 * @param string|null $content Inner content to pass to the shortcode.
+	 * @return string Rendered HTML.
+	 */
+	public function do_tag( $tag, array $atts = [ ], $content = null );
 }

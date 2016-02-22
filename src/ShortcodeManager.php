@@ -270,4 +270,18 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 			}
 		);
 	}
+
+	/**
+	 * Execute a specific shortcode directly from code.
+	 *
+	 * @since 0.2.4
+	 *
+	 * @param string $tag     Tag of the shortcode to execute.
+	 * @param array  $atts    Array of attributes to pass to the shortcode.
+	 * @param null   $content Inner content to pass to the shortcode.
+	 * @return string Rendered HTML.
+	 */
+	public function do_tag( $tag, array $atts = [ ], $content = null ) {
+		\BrightNucleus\Shortcode\do_tag( $tag, $atts, $content );
+	}
 }
