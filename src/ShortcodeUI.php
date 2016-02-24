@@ -102,7 +102,7 @@ class ShortcodeUI implements ShortcodeUIInterface {
 
 		$is_needed = $this->hasConfigKey( 'is_needed' )
 			? $this->getConfigKey( 'is_needed' )
-			: false;
+			: true;
 
 		// Return true if a callable 'is_needed' evaluates to true.
 		if ( is_callable( $is_needed ) ) {

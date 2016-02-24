@@ -128,7 +128,7 @@ class Shortcode implements ShortcodeInterface {
 
 		$is_needed = $this->hasConfigKey( 'is_needed' )
 			? $this->getConfigKey( 'is_needed' )
-			: false;
+			: true;
 
 		if ( is_callable( $is_needed ) ) {
 			return $is_needed( $context );
