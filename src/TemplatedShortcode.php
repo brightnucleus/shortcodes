@@ -181,13 +181,26 @@ class TemplatedShortcode extends Shortcode {
 			return '';
 		}
 
-		$this->maybe_strip_extension( $view );
+		$view = $this->get_view_slug( $view );
 
 		return $this->template_loader->get_template_part( $view );
 	}
 
 	/**
-	 * Strip the extension of a given view if it includes an extension.
+	 * Get the slug for a given view.
+	 *
+	 * @since 0.2.6
+	 *
+	 * @param string $view The view to get the slug for.
+	 * @return string Slug that can be passed into `get_template_part()`.
+	 */
+	protected function get_view_slug( $view ) {
+		return $this->maybe_strip_extension( basename( $view ) );
+	}
+
+	/**
+	 * Strip the extension for a given view filename if it includes an
+	 * extension.
 	 *
 	 * @since 0.2.6
 	 *
@@ -195,7 +208,6 @@ class TemplatedShortcode extends Shortcode {
 	 * @return string Extension-less view.
 	 */
 	protected function maybe_strip_extension( $view ) {
-		$pathinfo = pathinfo( $view );
-		return $pathinfo['dirname'] . PATH_SEPARATOR . $pathinfo['filename'];
+		return pathinfo( $view, PATHINFO_FILENAME );
 	}
 }
