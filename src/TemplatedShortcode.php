@@ -183,7 +183,7 @@ class TemplatedShortcode extends Shortcode {
 
 		$this->maybe_strip_extension( $view );
 
-		$template = $this->template_loader->get_template_part( $view );
+		return $this->template_loader->get_template_part( $view );
 	}
 
 	/**
