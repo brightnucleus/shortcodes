@@ -171,7 +171,7 @@ class Shortcode implements ShortcodeInterface {
 			$this->dependencies->enqueue( $atts );
 		}
 
-		return $this->render_view( $this->get_view() );
+		return $this->render_view( $this->get_view(), $context );
 	}
 
 	/**
@@ -179,10 +179,11 @@ class Shortcode implements ShortcodeInterface {
 	 *
 	 * @since 0.2.6
 	 *
-	 * @param string $view The view to render.
+	 * @param string $view    The view to render.
+	 * @param mixed  $context The context to pass through to the view.
 	 * @return string HTML rendering of the view.
 	 */
-	protected function render_view( $view ) {
+	protected function render_view( $view, $context ) {
 		if ( empty( $view ) ) {
 			return '';
 		}

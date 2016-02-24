@@ -78,9 +78,6 @@ class TemplatedShortcode extends Shortcode {
 	 * @return Gamajo_Template_Loader
 	 */
 	public function init_template_loader() {
-		if ( ! $this->hasConfigKey( 'template' ) ) {
-			return null;
-		}
 		$loader_class  = $this->hasConfigKey( 'template', 'custom_loader' )
 			? $this->getConfigKey( 'template', 'custom_loader' )
 			: $this->get_default_template_loader_class();
@@ -173,15 +170,18 @@ class TemplatedShortcode extends Shortcode {
 	 *
 	 * @since 0.2.6
 	 *
-	 * @param string $view The view to render.
+	 * @param string $view    The view to render.
+	 * @param mixed  $context The context to pass through to the view.
 	 * @return string HTML rendering of the view.
 	 */
-	protected function render_view( $view ) {
+	protected function render_view( $view, $context ) {
 		if ( empty( $view ) ) {
 			return '';
 		}
 
 		$view = $this->get_view_slug( $view );
+
+		$this->template_loader->set_template_data( (array) $context, 'context' );
 
 		ob_start();
 		$this->template_loader->get_template_part( $view );
