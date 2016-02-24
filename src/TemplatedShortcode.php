@@ -183,7 +183,9 @@ class TemplatedShortcode extends Shortcode {
 
 		$view = $this->get_view_slug( $view );
 
-		return $this->template_loader->get_template_part( $view );
+		ob_start();
+		$this->template_loader->get_template_part( $view );
+		return ob_get_clean();
 	}
 
 	/**
