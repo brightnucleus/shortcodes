@@ -88,10 +88,10 @@ class TemplatedShortcode extends Shortcode {
 			? $this->getConfigKey( 'template', 'filter_prefix' )
 			: $this->get_default_filter_prefix();
 		$template_dir  = $this->hasConfigKey( 'template', 'template_directory' )
-			? $this->getConfigKey( 'template', 'theme_template_directory' )
+			? $this->getConfigKey( 'template', 'template_directory' )
 			: $this->get_default_template_directory();
 		$view_dir      = $this->hasConfigKey( 'view' )
-			? $this->getConfigKey( 'view' )
+			? $this->get_directory_from_view( $this->getConfigKey( 'view' ) )
 			: $this->get_default_view_directory();
 
 		return new $loader_class(
@@ -139,6 +139,18 @@ class TemplatedShortcode extends Shortcode {
 	 */
 	protected function get_default_template_directory() {
 		return 'bn_shortcode';
+	}
+
+	/**
+	 * Get the directory for a given view file.
+	 *
+	 * @since 0.2.6
+	 *
+	 * @param string $view View file to extract the directory from.
+	 * @return string Directory that contains the given view.
+	 */
+	protected function get_directory_from_view( $view ) {
+		return dirname( $view );
 	}
 
 	/**
