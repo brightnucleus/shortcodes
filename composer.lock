@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6e4380236becc29be517ebe052f019b5",
+    "hash": "6e8755d411983a801184479c61580186",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -258,6 +258,49 @@
             ],
             "description": "Function and method invoking traits that match named arguments in the right order.",
             "time": "2016-02-18 12:30:59"
+        },
+        {
+            "name": "gamajo/template-loader",
+            "version": "dev-template-data",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GaryJones/Gamajo-Template-Loader.git",
+                "reference": "9758ec9add9b4957a7ecb23cf002bde80bf3bded"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GaryJones/Gamajo-Template-Loader/zipball/9758ec9add9b4957a7ecb23cf002bde80bf3bded",
+                "reference": "9758ec9add9b4957a7ecb23cf002bde80bf3bded",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.4"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "class-gamajo-template-loader.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Gary Jones",
+                    "email": "gamajo@gamajo.com",
+                    "homepage": "http://gamajo.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A class for your WordPress plugin, to allow loading template parts with fallback through the child theme > parent theme > plugin",
+            "homepage": "http://github.com/GaryJones/Gamajo-Template-Loader",
+            "keywords": [
+                "templates",
+                "wordpress"
+            ],
+            "time": "2015-12-29 13:30:39"
         },
         {
             "name": "symfony/options-resolver",
@@ -1385,6 +1428,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "gamajo/template-loader": 20,
         "wp-coding-standards/wpcs": 20
     },
     "prefer-stable": false,

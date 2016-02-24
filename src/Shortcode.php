@@ -171,6 +171,35 @@ class Shortcode implements ShortcodeInterface {
 			$this->dependencies->enqueue( $atts );
 		}
 
+		return $this->render_view( $this->get_view() );
+	}
+
+	/**
+	 * Get the rendered HTML for a given view.
+	 *
+	 * @since 0.2.6
+	 *
+	 * @param string $view The view to render.
+	 * @return string HTML rendering of the view.
+	 */
+	protected function render_view( $view ) {
+		if ( empty( $view ) ) {
+			return '';
+		}
+
+		ob_start();
+		include( $view );
+		return ob_get_clean();
+	}
+
+	/**
+	 * Get the name of the view to render.
+	 *
+	 * @since 0.2.6
+	 *
+	 * @return string Name of the view to render.
+	 */
+	protected function get_view() {
 		if ( ! $this->hasConfigKey( 'view' ) ) {
 			return '';
 		}
@@ -178,10 +207,7 @@ class Shortcode implements ShortcodeInterface {
 
 		Assert\that( $view )->string()->notEmpty()->file();
 
-		ob_start();
-		include( $this->config['view'] );
-
-		return ob_get_clean();
+		return $view;
 	}
 
 	/**
