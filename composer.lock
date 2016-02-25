@@ -139,16 +139,16 @@
         },
         {
             "name": "brightnucleus/dependencies",
-            "version": "v0.2.2",
+            "version": "v0.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/brightnucleus/dependencies.git",
-                "reference": "c298dd5bbeaf2556b333018881a00fa13d90aa27"
+                "reference": "319fc045d6ecc0bbe6278cd1b71644565d8ec7fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brightnucleus/dependencies/zipball/c298dd5bbeaf2556b333018881a00fa13d90aa27",
-                "reference": "c298dd5bbeaf2556b333018881a00fa13d90aa27",
+                "url": "https://api.github.com/repos/brightnucleus/dependencies/zipball/319fc045d6ecc0bbe6278cd1b71644565d8ec7fd",
+                "reference": "319fc045d6ecc0bbe6278cd1b71644565d8ec7fd",
                 "shasum": ""
             },
             "require": {
@@ -180,7 +180,7 @@
                 }
             ],
             "description": "Config-driven WordPress dependencies.",
-            "time": "2016-02-25 08:13:10"
+            "time": "2016-02-25 13:10:58"
         },
         {
             "name": "brightnucleus/exceptions",
