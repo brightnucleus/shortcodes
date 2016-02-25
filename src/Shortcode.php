@@ -165,15 +165,19 @@ class Shortcode implements ShortcodeInterface {
 		}
 
 		foreach ( $handles as $handle ) {
-			$found = $this->dependencies->enqueue_handle( $handle, $context, true );
+			$found = $this->dependencies->enqueue_handle(
+				$handle,
+				$context,
+				true
+			);
 			if ( ! $found ) {
-				trigger_error( sprintf(
+				$message = sprintf(
 					__( 'Could not enqueue dependency "%1$s" for shortcode "%2$s".',
 						'bn-shortcodes' ),
 					$handle,
-					$this->get_tag() ),
-					E_USER_WARNING
+					$this->get_tag()
 				);
+				trigger_error( $message, E_USER_WARNING );
 			}
 		}
 
