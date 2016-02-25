@@ -166,12 +166,29 @@ class Shortcode implements ShortcodeInterface {
 	public function render( $atts, $content = null, $tag = null ) {
 		$context = $this->context;
 		$atts    = $this->atts_parser->parse_atts( $atts, $this->get_tag() );
+		$handles = $this->get_dependency_handles();
 
-		if ( $this->dependencies ) {
-			$this->dependencies->enqueue( $atts );
+		if ( $this->dependencies && count( $handles ) > 0 ) {
+			foreach ( $handles as $handle ) {
+				$this->dependencies->enqueue_handle( $handle, $atts );
+			}
 		}
 
 		return $this->render_view( $this->get_view(), $context );
+	}
+
+	/**
+	 * Get an array of dependency handles for the current shortcode.
+	 *
+	 * @since 0.2.7
+	 *
+	 * @return array Array of strings that are registered dependency handles.
+	 */
+	protected function get_dependency_handles() {
+		if ( ! $this->hasConfigKey( 'dependencies' ) ) {
+			return [ ];
+		}
+		return (array) $this->getConfigKey( 'dependencies' );
 	}
 
 	/**
