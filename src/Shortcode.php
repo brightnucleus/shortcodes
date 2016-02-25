@@ -174,10 +174,10 @@ class Shortcode implements ShortcodeInterface {
 					$atts );
 				if ( ! $handle_found ) {
 					trigger_error( sprintf(
-							__( 'Could not enqueue dependency "%1$s" for shortcode "%2$s".',
-								'bn-shortcodes' ),
-							$handle,
-							$this->get_tag() ),
+						__( 'Could not enqueue dependency "%1$s" for shortcode "%2$s".',
+							'bn-shortcodes' ),
+						$handle,
+						$this->get_tag() ),
 						E_USER_WARNING
 					);
 				}
