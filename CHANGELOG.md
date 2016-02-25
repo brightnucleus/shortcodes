@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.2.9] - 2016-02-25
+### Added
+- Enqueueing of dependencies for a shortcode now falls back to dependencies already registered outside of `DependencyManager`.
+- Added `CheckNeedTrait` to deduplicate `is_needed()` method.
+
+### Fixed
+- Corrected end-of-line characters for several files.
+
 ## [0.2.8] - 2016-02-25
 ### Fixed
 - Use stable version of `brightnucleus/dependencies`.
@@ -72,6 +80,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial release to GitHub.
 
+[0.2.9]: https://github.com/brightnucleus/shortcodes/compare/v0.2.8...v0.2.9
 [0.2.8]: https://github.com/brightnucleus/shortcodes/compare/v0.2.7...v0.2.8
 [0.2.7]: https://github.com/brightnucleus/shortcodes/compare/v0.2.6...v0.2.7
 [0.2.6]: https://github.com/brightnucleus/shortcodes/compare/v0.2.5...v0.2.6
