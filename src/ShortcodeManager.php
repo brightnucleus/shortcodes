@@ -64,7 +64,7 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @var DependencyManagerInterface
+	 * @var DependencyManager
 	 */
 	protected $dependencies;
 

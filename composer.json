@@ -17,7 +17,7 @@
 		"beberlei/assert": "~2.4",
 		"brightnucleus/config": "^0.2",
 		"brightnucleus/exceptions": "^0.2",
-		"brightnucleus/dependencies": "^0.2",
+		"brightnucleus/dependencies": "dev-master",
 		"brightnucleus/contracts": "^0.1",
 		"gamajo/template-loader": "dev-template-data"
 	},

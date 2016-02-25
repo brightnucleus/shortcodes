@@ -11,6 +11,8 @@
 
 namespace BrightNucleus\Shortcode;
 
+use BrightNucleus\Contract\Registerable;
+
 /**
  * Shortcode Manager Interface.
  *
@@ -22,17 +24,7 @@ namespace BrightNucleus\Shortcode;
  * @package BrightNucleus\Shortcode
  * @author  Alain Schlesser <alain.schlesser@gmail.com>
  */
-interface ShortcodeManagerInterface {
-
-	/**
-	 * Register all of the shortcode handlers.
-	 *
-	 * @since 0.1.0
-	 *
-	 * @param mixed $context Optional. Context information to pass to shortcode.
-	 * @return void
-	 */
-	public function register( $context = null );
+interface ShortcodeManagerInterface extends Registerable {
 
 	/**
 	 * Register the shortcode UI handlers.
