@@ -146,25 +146,37 @@ class Shortcode implements ShortcodeInterface {
 	public function render( $atts, $content = null, $tag = null ) {
 		$context = $this->context;
 		$atts    = $this->atts_parser->parse_atts( $atts, $this->get_tag() );
-		$handles = $this->get_dependency_handles();
+		$this->enqueue_dependencies( $this->get_dependency_handles(), $atts );
 
-		if ( $this->dependencies && count( $handles ) > 0 ) {
-			foreach ( $handles as $handle ) {
-				$handle_found = $this->dependencies->enqueue_handle( $handle,
-					$atts );
-				if ( ! $handle_found ) {
-					trigger_error( sprintf(
-						__( 'Could not enqueue dependency "%1$s" for shortcode "%2$s".',
-							'bn-shortcodes' ),
-						$handle,
-						$this->get_tag() ),
-						E_USER_WARNING
-					);
-				}
+		return $this->render_view( $this->get_view(), $context );
+	}
+
+	/**
+	 * Enqueue the dependencies that the shortcode needs.
+	 *
+	 * @since 0.2.9
+	 *
+	 * @param array $handles Array of dependency handles to enqueue.
+	 * @param mixed $context Optional. Context in which to enqueue.
+	 */
+	protected function enqueue_dependencies( $handles, $context = null ) {
+		if ( ! $this->dependencies || count( $handles ) < 1 ) {
+			return;
+		}
+
+		foreach ( $handles as $handle ) {
+			$found = $this->dependencies->enqueue_handle( $handle, $context, true );
+			if ( ! $found ) {
+				trigger_error( sprintf(
+					__( 'Could not enqueue dependency "%1$s" for shortcode "%2$s".',
+						'bn-shortcodes' ),
+					$handle,
+					$this->get_tag() ),
+					E_USER_WARNING
+				);
 			}
 		}
 
-		return $this->render_view( $this->get_view(), $context );
 	}
 
 	/**
