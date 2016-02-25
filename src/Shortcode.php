@@ -170,7 +170,17 @@ class Shortcode implements ShortcodeInterface {
 
 		if ( $this->dependencies && count( $handles ) > 0 ) {
 			foreach ( $handles as $handle ) {
-				$this->dependencies->enqueue_handle( $handle, $atts );
+				$handle_found = $this->dependencies->enqueue_handle( $handle,
+					$atts );
+				if ( ! $handle_found ) {
+					trigger_error( sprintf(
+							__( 'Could not enqueue dependency "%1$s" for shortcode "%2$s".',
+								'bn-shortcodes' ),
+							$handle,
+							$this->get_tag() ),
+						E_USER_WARNING
+					);
+				}
 			}
 		}
 
