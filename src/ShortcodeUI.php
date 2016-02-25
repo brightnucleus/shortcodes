@@ -28,6 +28,7 @@ use BrightNucleus\Exception\RuntimeException;
 class ShortcodeUI implements ShortcodeUIInterface {
 
 	use ConfigTrait;
+	use CheckNeedTrait;
 
 	/**
 	 * Name of the shortcode handler.
@@ -88,27 +89,5 @@ class ShortcodeUI implements ShortcodeUIInterface {
 			$this->shortcode_tag,
 			$this->config
 		);
-	}
-
-	/**
-	 * Check whether the shortcode UI is needed.
-	 *
-	 * @since 0.1.0
-	 *
-	 * @param mixed $context Data about the context in which the call is made.
-	 * @return boolean Whether the shortcode UI is needed or not.
-	 */
-	protected function is_needed( $context = null ) {
-
-		$is_needed = $this->hasConfigKey( 'is_needed' )
-			? $this->getConfigKey( 'is_needed' )
-			: true;
-
-		// Return true if a callable 'is_needed' evaluates to true.
-		if ( is_callable( $is_needed ) ) {
-			return $is_needed( $context );
-		}
-
-		return (bool) $is_needed;
 	}
 }

@@ -32,6 +32,7 @@ use BrightNucleus\Exception\RuntimeException;
 class Shortcode implements ShortcodeInterface {
 
 	use ConfigTrait;
+	use CheckNeedTrait;
 
 	/**
 	 * Name of the shortcode handler.
@@ -114,27 +115,6 @@ class Shortcode implements ShortcodeInterface {
 		$this->context = $context;
 
 		\add_shortcode( $this->get_tag(), [ $this, 'render' ] );
-	}
-
-	/**
-	 * Check whether the shortcode is needed.
-	 *
-	 * @since 0.2.0
-	 *
-	 * @param mixed $context Data about the context in which the call is made.
-	 * @return boolean Whether the shortcode is needed or not.
-	 */
-	protected function is_needed( $context = null ) {
-
-		$is_needed = $this->hasConfigKey( 'is_needed' )
-			? $this->getConfigKey( 'is_needed' )
-			: true;
-
-		if ( is_callable( $is_needed ) ) {
-			return $is_needed( $context );
-		}
-
-		return (bool) $is_needed;
 	}
 
 	/**
