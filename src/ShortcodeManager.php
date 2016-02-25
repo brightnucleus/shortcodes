@@ -263,8 +263,7 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 		$context  = [ 'page_template' => $template ];
 
 		array_walk( $this->shortcode_uis,
-			function ( $shortcode_ui ) use ( $context ) {
-				/** @var ShortcodeUIInterface $shortcode_ui */
+			function ( ShortcodeUIInterface $shortcode_ui ) use ( $context ) {
 				$shortcode_ui->register( $context );
 			}
 		);
