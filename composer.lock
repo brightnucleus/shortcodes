@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fe862be8e1a6c8562c7d5d41a49a1237",
+    "hash": "6e8755d411983a801184479c61580186",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -139,16 +139,16 @@
         },
         {
             "name": "brightnucleus/dependencies",
-            "version": "dev-master",
+            "version": "v0.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/brightnucleus/dependencies.git",
-                "reference": "3447e3d41848c14e94691bc3a5411ca5f090eb4f"
+                "reference": "c298dd5bbeaf2556b333018881a00fa13d90aa27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brightnucleus/dependencies/zipball/3447e3d41848c14e94691bc3a5411ca5f090eb4f",
-                "reference": "3447e3d41848c14e94691bc3a5411ca5f090eb4f",
+                "url": "https://api.github.com/repos/brightnucleus/dependencies/zipball/c298dd5bbeaf2556b333018881a00fa13d90aa27",
+                "reference": "c298dd5bbeaf2556b333018881a00fa13d90aa27",
                 "shasum": ""
             },
             "require": {
@@ -180,7 +180,7 @@
                 }
             ],
             "description": "Config-driven WordPress dependencies.",
-            "time": "2016-02-25 06:57:54"
+            "time": "2016-02-25 08:13:10"
         },
         {
             "name": "brightnucleus/exceptions",
@@ -1428,7 +1428,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "brightnucleus/dependencies": 20,
         "gamajo/template-loader": 20,
         "wp-coding-standards/wpcs": 20
     },

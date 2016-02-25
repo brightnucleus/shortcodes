@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.2.8] - 2016-02-25
+### Fixed
+- Use stable version of `brightnucleus/dependencies`.
+
 ## [0.2.7] - 2016-02-25
 ### Changed
 - Dependencies are only enqueued if their handles are included in the shortcode's "dependencies" key.
@@ -68,6 +72,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial release to GitHub.
 
+[0.2.8]: https://github.com/brightnucleus/shortcodes/compare/v0.2.7...v0.2.8
 [0.2.7]: https://github.com/brightnucleus/shortcodes/compare/v0.2.6...v0.2.7
 [0.2.6]: https://github.com/brightnucleus/shortcodes/compare/v0.2.5...v0.2.6
 [0.2.5]: https://github.com/brightnucleus/shortcodes/compare/v0.2.4...v0.2.5
