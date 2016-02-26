@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.2.10] - 2016-02-26
+### Fixed
+- Removed executable bit from files.
+- Correctly type-hint closures.
+- Added abstract method declarations to `CheckNeedTrait` to ensure that classes using it will provide the necessary methods.
+- Bump `brightnucleus/config` requirement to v0.2.4
+
 ## [0.2.9] - 2016-02-25
 ### Added
 - Enqueueing of dependencies for a shortcode now falls back to dependencies already registered outside of `DependencyManager`.
@@ -80,6 +87,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial release to GitHub.
 
+[0.2.10]: https://github.com/brightnucleus/shortcodes/compare/v0.2.9...v0.2.10
 [0.2.9]: https://github.com/brightnucleus/shortcodes/compare/v0.2.8...v0.2.9
 [0.2.8]: https://github.com/brightnucleus/shortcodes/compare/v0.2.7...v0.2.8
 [0.2.7]: https://github.com/brightnucleus/shortcodes/compare/v0.2.6...v0.2.7
