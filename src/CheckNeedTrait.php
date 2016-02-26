@@ -43,4 +43,28 @@ trait CheckNeedTrait {
 
 		return (bool) $is_needed;
 	}
+
+	/**
+	 * Check whether the Config has a specific key.
+	 *
+	 * This needs to be implemented in a class that wants to use CheckNeedTrait.
+	 *
+	 * @since 0.2.10
+	 *
+	 * @param string|array $_ List of keys.
+	 * @return bool Whether the key is known.
+	 */
+	abstract protected function hasConfigKey( $_ );
+
+	/**
+	 * Get the Config value for a specific key.
+	 *
+	 * This needs to be implemented in a class that wants to use CheckNeedTrait.
+	 *
+	 * @since 0.2.10
+	 *
+	 * @param string|array $_ List of keys.
+	 * @return mixed Value of the key.
+	 */
+	abstract protected function getConfigKey( $_ );
 }
