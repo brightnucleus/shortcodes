@@ -4,20 +4,20 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "10796cd79f6b570c98cc850d93f3b58e",
+    "hash": "280c0ae8335169a87cde8c591ba1e415",
     "packages": [
         {
             "name": "beberlei/assert",
-            "version": "v2.4",
+            "version": "dev-schlessera-138-functions-file-causes-collisions",
             "source": {
                 "type": "git",
-                "url": "https://github.com/beberlei/assert.git",
-                "reference": "7281b1fd8118b31cb9162c2fb5a4cc6f01d62ed6"
+                "url": "https://github.com/schlessera/assert.git",
+                "reference": "1390523e1f40f3ba24acae002ede94db61c6399d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/beberlei/assert/zipball/7281b1fd8118b31cb9162c2fb5a4cc6f01d62ed6",
-                "reference": "7281b1fd8118b31cb9162c2fb5a4cc6f01d62ed6",
+                "url": "https://api.github.com/repos/schlessera/assert/zipball/1390523e1f40f3ba24acae002ede94db61c6399d",
+                "reference": "1390523e1f40f3ba24acae002ede94db61c6399d",
                 "shasum": ""
             },
             "require": {
@@ -41,7 +41,6 @@
                     "lib/Assert/functions.php"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-2-Clause"
             ],
@@ -57,24 +56,27 @@
                 "assertion",
                 "validation"
             ],
-            "time": "2015-08-21 16:50:17"
+            "support": {
+                "source": "https://github.com/schlessera/assert/tree/schlessera-138-functions-file-causes-collisions"
+            },
+            "time": "2016-03-04 11:46:48"
         },
         {
             "name": "brightnucleus/config",
-            "version": "v0.2.4",
+            "version": "v0.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/brightnucleus/config.git",
-                "reference": "060029335a1e5d0905743a8d71104b82040161c1"
+                "reference": "f77ec215dc4b28b9492ba0669f5f2ecc7caaa43e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brightnucleus/config/zipball/060029335a1e5d0905743a8d71104b82040161c1",
-                "reference": "060029335a1e5d0905743a8d71104b82040161c1",
+                "url": "https://api.github.com/repos/brightnucleus/config/zipball/f77ec215dc4b28b9492ba0669f5f2ecc7caaa43e",
+                "reference": "f77ec215dc4b28b9492ba0669f5f2ecc7caaa43e",
                 "shasum": ""
             },
             "require": {
-                "beberlei/assert": ">2",
+                "beberlei/assert": "dev-schlessera-138-functions-file-causes-collisions",
                 "brightnucleus/exceptions": "^0.2",
                 "symfony/options-resolver": ">2.8"
             },
@@ -99,7 +101,7 @@
                 }
             ],
             "description": "Minimal, reusable Config component.",
-            "time": "2016-02-26 07:10:16"
+            "time": "2016-03-04 13:20:34"
         },
         {
             "name": "brightnucleus/contracts",
@@ -139,20 +141,20 @@
         },
         {
             "name": "brightnucleus/dependencies",
-            "version": "v0.2.3",
+            "version": "v0.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/brightnucleus/dependencies.git",
-                "reference": "b805a7df255d4eb3aa4dbc00a4a82f7e38f34088"
+                "reference": "0c5a861b68791ff59d8b928bf989bfe2f7de34ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brightnucleus/dependencies/zipball/b805a7df255d4eb3aa4dbc00a4a82f7e38f34088",
-                "reference": "b805a7df255d4eb3aa4dbc00a4a82f7e38f34088",
+                "url": "https://api.github.com/repos/brightnucleus/dependencies/zipball/0c5a861b68791ff59d8b928bf989bfe2f7de34ff",
+                "reference": "0c5a861b68791ff59d8b928bf989bfe2f7de34ff",
                 "shasum": ""
             },
             "require": {
-                "beberlei/assert": "~2.4",
+                "beberlei/assert": "dev-schlessera-138-functions-file-causes-collisions",
                 "brightnucleus/config": "^0.2",
                 "brightnucleus/contracts": "^0.1",
                 "brightnucleus/exceptions": "^0.2",
@@ -180,21 +182,24 @@
                 }
             ],
             "description": "Config-driven WordPress dependencies.",
-            "time": "2016-02-25 13:16:03"
+            "time": "2016-03-04 13:27:58"
         },
         {
             "name": "brightnucleus/exceptions",
-            "version": "v0.2.0",
+            "version": "v0.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/brightnucleus/exceptions.git",
-                "reference": "1ef7a33796067e21f67c5c34525432c7a1f44c41"
+                "reference": "6d41bc26c3aff956e46e5ee4fa00d053fe0516f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brightnucleus/exceptions/zipball/1ef7a33796067e21f67c5c34525432c7a1f44c41",
-                "reference": "1ef7a33796067e21f67c5c34525432c7a1f44c41",
+                "url": "https://api.github.com/repos/brightnucleus/exceptions/zipball/6d41bc26c3aff956e46e5ee4fa00d053fe0516f5",
+                "reference": "6d41bc26c3aff956e46e5ee4fa00d053fe0516f5",
                 "shasum": ""
+            },
+            "require": {
+                "beberlei/assert": "dev-schlessera-138-functions-file-causes-collisions"
             },
             "require-dev": {
                 "phpunit/phpunit": "~4",
@@ -217,20 +222,20 @@
                 }
             ],
             "description": "Exceptions shared across Bright Nucleus components.",
-            "time": "2016-02-18 09:40:22"
+            "time": "2016-03-04 13:15:47"
         },
         {
             "name": "brightnucleus/invoker",
-            "version": "v0.1.2",
+            "version": "v0.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/brightnucleus/invoker.git",
-                "reference": "7df7a939a282ad5ca29903dda6a28cbbe96082c1"
+                "reference": "593539ea3f1eb416ee04c7397f62ec8f5b75cf40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brightnucleus/invoker/zipball/7df7a939a282ad5ca29903dda6a28cbbe96082c1",
-                "reference": "7df7a939a282ad5ca29903dda6a28cbbe96082c1",
+                "url": "https://api.github.com/repos/brightnucleus/invoker/zipball/593539ea3f1eb416ee04c7397f62ec8f5b75cf40",
+                "reference": "593539ea3f1eb416ee04c7397f62ec8f5b75cf40",
                 "shasum": ""
             },
             "require": {
@@ -257,7 +262,7 @@
                 }
             ],
             "description": "Function and method invoking traits that match named arguments in the right order.",
-            "time": "2016-02-18 12:30:59"
+            "time": "2016-02-26 09:45:55"
         },
         {
             "name": "gamajo/template-loader",
@@ -304,7 +309,7 @@
         },
         {
             "name": "symfony/options-resolver",
-            "version": "v3.0.2",
+            "version": "v3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/options-resolver.git",
@@ -1009,16 +1014,16 @@
         },
         {
             "name": "sebastian/environment",
-            "version": "1.3.3",
+            "version": "1.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/environment.git",
-                "reference": "6e7133793a8e5a5714a551a8324337374be209df"
+                "reference": "dc7a29032cf72b54f36dac15a1ca5b3a1b6029bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/6e7133793a8e5a5714a551a8324337374be209df",
-                "reference": "6e7133793a8e5a5714a551a8324337374be209df",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/dc7a29032cf72b54f36dac15a1ca5b3a1b6029bf",
+                "reference": "dc7a29032cf72b54f36dac15a1ca5b3a1b6029bf",
                 "shasum": ""
             },
             "require": {
@@ -1055,7 +1060,7 @@
                 "environment",
                 "hhvm"
             ],
-            "time": "2015-12-02 08:37:27"
+            "time": "2016-02-26 18:40:46"
         },
         {
             "name": "sebastian/exporter",
@@ -1341,16 +1346,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.0.2",
+            "version": "v3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "3cf0709d7fe936e97bee9e954382e449003f1d9a"
+                "reference": "b5ba64cd67ecd6887f63868fa781ca094bd1377c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/3cf0709d7fe936e97bee9e954382e449003f1d9a",
-                "reference": "3cf0709d7fe936e97bee9e954382e449003f1d9a",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/b5ba64cd67ecd6887f63868fa781ca094bd1377c",
+                "reference": "b5ba64cd67ecd6887f63868fa781ca094bd1377c",
                 "shasum": ""
             },
             "require": {
@@ -1386,7 +1391,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2016-02-02 13:44:19"
+            "time": "2016-02-23 15:16:06"
         },
         {
             "name": "wp-coding-standards/wpcs",
@@ -1428,6 +1433,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "beberlei/assert": 20,
         "gamajo/template-loader": 20,
         "wp-coding-standards/wpcs": 20
     },
