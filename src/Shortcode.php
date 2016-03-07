@@ -148,7 +148,7 @@ class Shortcode implements ShortcodeInterface {
 		$atts    = $this->atts_parser->parse_atts( $atts, $this->get_tag() );
 		$this->enqueue_dependencies( $this->get_dependency_handles(), $atts );
 
-		return $this->render_view( $this->get_view(), $context );
+		return $this->render_view( $this->get_view(), $context, $atts );
 	}
 
 	/**
@@ -204,9 +204,10 @@ class Shortcode implements ShortcodeInterface {
 	 *
 	 * @param string $view    The view to render.
 	 * @param mixed  $context The context to pass through to the view.
+	 * @param mixed  $atts    The shortcode attribute values to pass through to the view.
 	 * @return string HTML rendering of the view.
 	 */
-	protected function render_view( $view, $context ) {
+	protected function render_view( $view, $context, $atts ) {
 		if ( empty( $view ) ) {
 			return '';
 		}
