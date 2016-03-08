@@ -204,7 +204,8 @@ class Shortcode implements ShortcodeInterface {
 	 *
 	 * @param string $view    The view to render.
 	 * @param mixed  $context The context to pass through to the view.
-	 * @param mixed  $atts    The shortcode attribute values to pass through to the view.
+	 * @param array  $atts    The shortcode attribute values to pass through to
+	 *                        the view.
 	 * @return string HTML rendering of the view.
 	 */
 	protected function render_view( $view, $context, $atts ) {
