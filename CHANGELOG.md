@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.2.12] - 2016-03-04
+### Fixed
+- Pass `$atts` through to view so they can be used in there. Props to @GaryJones.
+
 ## [0.2.11] - 2016-03-04
 ### Fixed
 - Switch `beberlei/assert` to own fork until [#138](https://github.com/beberlei/assert/issues/138) has been fixed.
@@ -91,6 +95,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial release to GitHub.
 
+[0.2.12]: https://github.com/brightnucleus/shortcodes/compare/v0.2.11...v0.2.12
 [0.2.11]: https://github.com/brightnucleus/shortcodes/compare/v0.2.10...v0.2.11
 [0.2.10]: https://github.com/brightnucleus/shortcodes/compare/v0.2.9...v0.2.10
 [0.2.9]: https://github.com/brightnucleus/shortcodes/compare/v0.2.8...v0.2.9
