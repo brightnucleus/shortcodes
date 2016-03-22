@@ -30,7 +30,11 @@ if ( ! function_exists( __NAMESPACE__ . '\\do_tag' ) ) {
 			return false;
 		}
 
-		return call_user_func( $shortcode_tags[ $tag ], $atts, $content,
-			$tag );
+		return call_user_func(
+			$shortcode_tags[ $tag ],
+			$atts,
+			$content,
+			$tag
+		);
 	}
 }
