@@ -21,13 +21,16 @@ namespace BrightNucleus\Shortcode;
  * @param string|null $content Inner content to pass to the shortcode.
  * @return string|false Rendered HTML.
  */
-function do_tag( $tag, array $atts = [ ], $content = null ) {
+if ( ! function_exists( __NAMESPACE__ . '\\do_tag' ) ) {
+	function do_tag( $tag, array $atts = [ ], $content = null ) {
 
-	global $shortcode_tags;
+		global $shortcode_tags;
 
-	if ( ! array_key_exists( $tag, $shortcode_tags ) ) {
-		return false;
+		if ( ! array_key_exists( $tag, $shortcode_tags ) ) {
+			return false;
+		}
+
+		return call_user_func( $shortcode_tags[ $tag ], $atts, $content,
+			$tag );
 	}
-
-	return call_user_func( $shortcode_tags[ $tag ], $atts, $content, $tag );
 }
