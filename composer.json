@@ -13,14 +13,8 @@
 			"email": "alain.schlesser@gmail.com"
 		}
 	],
-	"repositories": [
-		{
-			"type": "vcs",
-			"url": "https://github.com/schlessera/assert"
-		}
-	],
 	"require": {
-		"beberlei/assert": "dev-schlessera-138-functions-file-causes-collisions",
+		"beberlei/assert": "^2.5",
 		"brightnucleus/config": "^0.2.4",
 		"brightnucleus/exceptions": "^0.2",
 		"brightnucleus/dependencies": "^0.2",
