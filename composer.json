@@ -19,7 +19,7 @@
 		"brightnucleus/exceptions": "^0.2",
 		"brightnucleus/dependencies": "^0.2",
 		"brightnucleus/contracts": "^0.1",
-		"gamajo/template-loader": "dev-template-data"
+		"gamajo/template-loader": "^1.2"
 	},
 	"autoload": {
 		"psr-4": {

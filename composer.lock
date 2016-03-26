@@ -1,10 +1,11 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "49cb13b828fea3ef18d3e744201f7b7f",
+    "hash": "4ac365cde0a4316eaa029bfc45433de3",
+    "content-hash": "9629536e058de37eab18dea4aa5459ea",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -264,16 +265,16 @@
         },
         {
             "name": "gamajo/template-loader",
-            "version": "dev-template-data",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GaryJones/Gamajo-Template-Loader.git",
-                "reference": "9758ec9add9b4957a7ecb23cf002bde80bf3bded"
+                "reference": "e53b4698670de81849e04c1d24a82e8466e59c99"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GaryJones/Gamajo-Template-Loader/zipball/9758ec9add9b4957a7ecb23cf002bde80bf3bded",
-                "reference": "9758ec9add9b4957a7ecb23cf002bde80bf3bded",
+                "url": "https://api.github.com/repos/GaryJones/Gamajo-Template-Loader/zipball/e53b4698670de81849e04c1d24a82e8466e59c99",
+                "reference": "e53b4698670de81849e04c1d24a82e8466e59c99",
                 "shasum": ""
             },
             "require": {
@@ -303,7 +304,7 @@
                 "templates",
                 "wordpress"
             ],
-            "time": "2015-12-29 13:30:39"
+            "time": "2016-03-26 07:42:40"
         },
         {
             "name": "symfony/options-resolver",
@@ -1431,7 +1432,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "gamajo/template-loader": 20,
         "wp-coding-standards/wpcs": 20
     },
     "prefer-stable": false,
