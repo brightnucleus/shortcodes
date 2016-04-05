@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.2.16] - 2016-04-05
+### Changed
+- Update Composer dependencies.
+
 ## [0.2.15] - 2016-03-26
 ### Fixed
 - Switched `gamjo-template-loader` to release 1.2.0
@@ -108,6 +112,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial release to GitHub.
 
+[0.2.16]: https://github.com/brightnucleus/shortcodes/compare/v0.2.15...v0.2.16
 [0.2.15]: https://github.com/brightnucleus/shortcodes/compare/v0.2.14...v0.2.15
 [0.2.14]: https://github.com/brightnucleus/shortcodes/compare/v0.2.13...v0.2.14
 [0.2.13]: https://github.com/brightnucleus/shortcodes/compare/v0.2.12...v0.2.13

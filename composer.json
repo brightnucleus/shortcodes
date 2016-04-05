@@ -14,12 +14,12 @@
 		}
 	],
 	"require": {
-		"beberlei/assert": "^2.5",
-		"brightnucleus/config": "^0.2.4",
-		"brightnucleus/exceptions": "^0.2",
-		"brightnucleus/dependencies": "^0.2",
-		"brightnucleus/contracts": "^0.1",
-		"gamajo/template-loader": "^1.2"
+		"beberlei/assert": ">=2.5",
+		"brightnucleus/config": ">=0.2",
+		"brightnucleus/exceptions": ">=0.2",
+		"brightnucleus/dependencies": ">=0.2",
+		"brightnucleus/contracts": ">=0.1",
+		"gamajo/template-loader": ">=1.2"
 	},
 	"autoload": {
 		"psr-4": {
