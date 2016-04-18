@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.2.17] - 2016-04-18
+### Fixed
+- Forward inner shortcode `$content` to view.
+
 ## [0.2.16] - 2016-04-05
 ### Changed
 - Update Composer dependencies.
@@ -112,6 +116,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial release to GitHub.
 
+[0.2.17]: https://github.com/brightnucleus/shortcodes/compare/v0.2.16...v0.2.17
 [0.2.16]: https://github.com/brightnucleus/shortcodes/compare/v0.2.15...v0.2.16
 [0.2.15]: https://github.com/brightnucleus/shortcodes/compare/v0.2.14...v0.2.15
 [0.2.14]: https://github.com/brightnucleus/shortcodes/compare/v0.2.13...v0.2.14
