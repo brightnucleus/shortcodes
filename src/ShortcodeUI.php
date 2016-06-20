@@ -11,7 +11,6 @@
 
 namespace BrightNucleus\Shortcode;
 
-use Assert;
 use BrightNucleus\Config\ConfigInterface;
 use BrightNucleus\Config\ConfigTrait;
 use BrightNucleus\Dependency\DependencyManagerInterface as DependencyManager;
@@ -64,8 +63,6 @@ class ShortcodeUI implements ShortcodeUIInterface {
 		ConfigInterface $config,
 		DependencyManager $dependencies = null
 	) {
-		Assert\that( $shortcode_tag )->string()->notEmpty();
-
 		$this->processConfig( $config );
 
 		$this->shortcode_tag = $shortcode_tag;

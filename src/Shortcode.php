@@ -11,7 +11,6 @@
 
 namespace BrightNucleus\Shortcode;
 
-use Assert;
 use BrightNucleus\Config\ConfigInterface;
 use BrightNucleus\Config\ConfigTrait;
 use BrightNucleus\Dependency\DependencyManagerInterface as DependencyManager;
@@ -90,8 +89,6 @@ class Shortcode implements ShortcodeInterface {
 		ShortcodeAttsParser $atts_parser,
 		DependencyManager $dependencies = null
 	) {
-
-		Assert\that( $shortcode_tag )->string()->notEmpty();
 
 		$this->processConfig( $config );
 
@@ -236,8 +233,6 @@ class Shortcode implements ShortcodeInterface {
 			return '';
 		}
 		$view = $this->getConfigKey( 'view' );
-
-		Assert\that( $view )->string()->notEmpty()->file();
 
 		return $view;
 	}

@@ -14,7 +14,6 @@
 
 namespace BrightNucleus\Shortcode;
 
-use Assert;
 use BrightNucleus\Config\ConfigInterface;
 use BrightNucleus\Dependency\DependencyManagerInterface as DependencyManager;
 use BrightNucleus\Exception\RuntimeException;
