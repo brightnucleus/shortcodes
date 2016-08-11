@@ -169,11 +169,14 @@ class TemplatedShortcode extends Shortcode {
 	 *
 	 * @since 0.2.6
 	 *
-	 * @param string $view    The view to render.
-	 * @param mixed  $context The context to pass through to the view.
+	 * @param string      $view    The view to render.
+	 * @param mixed       $context The context to pass through to the view.
+	 * @param array       $atts    The shortcode attribute values to pass
+	 *                             through to the view.
+	 * @param string|null $content Optional. The inner content of the shortcode.
 	 * @return string HTML rendering of the view.
 	 */
-	protected function render_view( $view, $context ) {
+	protected function render_view( $view, $context, $atts, $content = null ) {
 		if ( empty( $view ) ) {
 			return '';
 		}

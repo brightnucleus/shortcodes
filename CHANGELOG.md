@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.2.19] - 2016-08-11
+### Fix
+- Fix broken `TemplateShortcode::render_view()` method.
+
 ## [0.2.18] - 2016-06-20
 ### Changed
 - Removed dependency on `beberlei/assert` package.
@@ -120,6 +124,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial release to GitHub.
 
+[0.2.19]: https://github.com/brightnucleus/shortcodes/compare/v0.2.18...v0.2.19
 [0.2.18]: https://github.com/brightnucleus/shortcodes/compare/v0.2.17...v0.2.18
 [0.2.17]: https://github.com/brightnucleus/shortcodes/compare/v0.2.16...v0.2.17
 [0.2.16]: https://github.com/brightnucleus/shortcodes/compare/v0.2.15...v0.2.16
