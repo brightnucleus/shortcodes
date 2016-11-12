@@ -1,10 +1,10 @@
 <?php
 /**
- * Shortcode Manager.
+ * Bright Nucleus Shortcode Component.
  *
  * @package   BrightNucleus\Shortcode
  * @author    Alain Schlesser <alain.schlesser@gmail.com>
- * @license   GPL-2.0+
+ * @license   MIT
  * @link      http://www.brightnucleus.com/
  * @copyright 2015-2016 Alain Schlesser, Bright Nucleus
  */
@@ -15,6 +15,7 @@ use BrightNucleus\Config\ConfigInterface;
 use BrightNucleus\Config\ConfigTrait;
 use BrightNucleus\Dependency\DependencyManagerInterface as DependencyManager;
 use BrightNucleus\Exception\RuntimeException;
+use BrightNucleus\Invoker\InstantiatorTrait;
 use BrightNucleus\Shortcode\Exception\FailedToInstantiateObject;
 use Exception;
 
@@ -32,6 +33,7 @@ use Exception;
 class ShortcodeManager implements ShortcodeManagerInterface {
 
 	use ConfigTrait;
+	use InstantiatorTrait;
 
 	/*
 	 * The delimiter that is used to express key-subkey relations in the config.
@@ -88,6 +90,7 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 	 *                                             shortcodes.
 	 * @param DependencyManager|null $dependencies Optional. Dependencies that
 	 *                                             are needed by the shortcodes.
+	 *
 	 * @throws RuntimeException If the config could not be processed.
 	 */
 	public function __construct(
@@ -116,7 +119,8 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param string $tag                The tag of the shortcode to register.
+	 * @param string $tag The tag of the shortcode to register.
+	 *
 	 * @throws FailedToInstantiateObject If the Shortcode Atts Parser object
 	 *                                   could not be instantiated.
 	 * @throws FailedToInstantiateObject If the Shortcode object could not be
@@ -129,17 +133,17 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 		$atts_parser = $this->instantiate(
 			ShortcodeAttsParserInterface::class,
 			$shortcode_atts_parser,
-			[ $this->config->getSubConfig( $tag ) ]
+			[ 'config' => $this->config->getSubConfig( $tag ) ]
 		);
 
 		$this->shortcodes[] = $this->instantiate(
 			ShortcodeInterface::class,
 			$shortcode_class,
 			[
-				$tag,
-				$this->config->getSubConfig( $tag ),
-				$atts_parser,
-				$this->dependencies,
+				'shortcode_tag' => $tag,
+				'config'        => $this->config->getSubConfig( $tag ),
+				'atts_parser'   => $atts_parser,
+				'dependencies'  => $this->dependencies,
 			]
 		);
 
@@ -154,12 +158,14 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 	 * @since 0.1.0
 	 *
 	 * @param string $tag Shortcode tag to get the class for.
+	 *
 	 * @return string Class name of the Shortcode.
 	 */
 	protected function get_shortcode_class( $tag ) {
 		$shortcode_class = $this->hasConfigKey( $tag, self::KEY_CUSTOM_CLASS )
 			? $this->getConfigKey( $tag, self::KEY_CUSTOM_CLASS )
 			: self::DEFAULT_SHORTCODE;
+
 		return $shortcode_class;
 	}
 
@@ -170,12 +176,14 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 	 * @since 0.1.0
 	 *
 	 * @param string $tag Shortcode tag to get the class for.
+	 *
 	 * @return string Class name of the ShortcodeAttsParser.
 	 */
 	protected function get_shortcode_atts_parser_class( $tag ) {
 		$atts_parser = $this->hasConfigKey( $tag, self::KEY_CUSTOM_ATTS_PARSER )
 			? $this->getConfigKey( $tag, self::KEY_CUSTOM_ATTS_PARSER )
 			: self::DEFAULT_SHORTCODE_ATTS_PARSER;
+
 		return $atts_parser;
 	}
 
@@ -186,6 +194,7 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 	 *
 	 * @param string $tag                The tag of the shortcode to register
 	 *                                   the UI for.
+	 *
 	 * @throws FailedToInstantiateObject If the Shortcode UI object could not
 	 *                                   be instantiated.
 	 */
@@ -196,9 +205,9 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 			ShortcodeUIInterface::class,
 			$shortcode_ui_class,
 			[
-				$tag,
-				$this->config->getSubConfig( $tag, self::KEY_UI ),
-				$this->dependencies,
+				'shortcode_tag' => $tag,
+				'config'        => $this->config->getSubConfig( $tag, self::KEY_UI ),
+				'dependencies'  => $this->dependencies,
 			]
 		);
 	}
@@ -209,12 +218,14 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 	 * @since 0.1.0
 	 *
 	 * @param string $tag Configuration settings.
+	 *
 	 * @return string Class name of the ShortcodeUI.
 	 */
 	protected function get_shortcode_ui_class( $tag ) {
 		$ui_class = $this->hasConfigKey( $tag, self::KEY_CUSTOM_UI )
 			? $this->getConfigKey( $tag, self::KEY_CUSTOM_UI )
 			: self::DEFAULT_SHORTCODE_UI;
+
 		return $ui_class;
 	}
 
@@ -224,6 +235,7 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 	 * @since 0.1.0
 	 *
 	 * @param mixed $context Optional. Context information to pass to shortcode.
+	 *
 	 * @return void
 	 */
 	public function register( $context = null ) {
@@ -248,12 +260,14 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 	 * @since 0.2.3
 	 *
 	 * @param mixed $context The context as passed in by WordPress.
+	 *
 	 * @return array Validated context.
 	 */
 	protected function validate_context( $context ) {
 		if ( is_string( $context ) ) {
 			return [ 'wp_context' => $context ];
 		}
+
 		return (array) $context;
 	}
 
@@ -270,6 +284,7 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 			'',
 			\get_page_template()
 		);
+
 		return $template;
 	}
 
@@ -297,6 +312,7 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 	 * @param string $tag     Tag of the shortcode to execute.
 	 * @param array  $atts    Array of attributes to pass to the shortcode.
 	 * @param null   $content Inner content to pass to the shortcode.
+	 *
 	 * @return string|false Rendered HTML.
 	 */
 	public function do_tag( $tag, array $atts = [], $content = null ) {
@@ -314,6 +330,7 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 	 *                                   method.
 	 * @param array           $args      Arguments passed to the constructor or
 	 *                                   factory method.
+	 *
 	 * @return object Object that implements the interface.
 	 * @throws FailedToInstantiateObject If no valid object could be
 	 *                                   instantiated.
@@ -325,15 +342,17 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 			}
 
 			if ( is_string( $class ) ) {
-				$class = call_user_func_array( $class, $args );
+				$class = $this->instantiateClass( $class, $args );
 			}
 		} catch ( Exception $exception ) {
 			throw FailedToInstantiateObject::fromFactory( $class, $interface );
 		}
 
-		if ( ! $class instanceof $interface ) {
-			throw FailedToInstantiateObject::fromInvalidObject( $class,
-				$interface );
+		if ( ! is_subclass_of( $class, $interface ) ) {
+			throw FailedToInstantiateObject::fromInvalidObject(
+				$class,
+				$interface
+			);
 		}
 
 		return $class;

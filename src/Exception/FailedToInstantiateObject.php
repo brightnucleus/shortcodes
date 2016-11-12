@@ -4,7 +4,7 @@
  *
  * @package   BrightNucleus\Shortcode
  * @author    Alain Schlesser <alain.schlesser@gmail.com>
- * @license   GPL-2.0+
+ * @license   MIT
  * @link      http://www.brightnucleus.com/
  * @copyright 2015-2016 Alain Schlesser, Bright Nucleus
  */
@@ -69,7 +69,8 @@ class FailedToInstantiateObject extends RuntimeException implements ShortcodeExc
 	 */
 	public static function fromInvalidObject( $factory, $interface ) {
 		$message = sprintf(
-			'Could not instantiate object : "%1$s".',
+			'Could not instantiate object of type "%1$s", got "%2$s" instead.',
+			$interface,
 			$factory
 		);
 		return new static( $message );

@@ -6,7 +6,7 @@
 		"squizlabs/php_codesniffer": "~2.5",
 		"wp-coding-standards/wpcs": "dev-master"
 	},
-	"license": "GPL-2.0+",
+	"license": "MIT",
 	"authors": [
 		{
 			"name": "Alain Schlesser",
@@ -18,7 +18,8 @@
 		"brightnucleus/exceptions": ">=0.2",
 		"brightnucleus/dependencies": ">=0.2",
 		"brightnucleus/contracts": ">=0.1",
-		"gamajo/template-loader": ">=1.2"
+		"gamajo/template-loader": ">=1.2",
+		"brightnucleus/invoker": ">=0.2.0"
 	},
 	"autoload": {
 		"psr-4": {

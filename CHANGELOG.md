@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.3.1] - 2016-11-12
+### Changed
+- Changed license to MIT.
+
+### Fixed
+- Fixed bug with class instantiation.
+
 ## [0.3.0] - 2016-11-12
 ### Changed
 - The custom class keys in the Config can now take either fully qualified class name or a callable that acts as a factory.
@@ -129,6 +136,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial release to GitHub.
 
+[0.3.1]: https://github.com/brightnucleus/shortcodes/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/brightnucleus/shortcodes/compare/v0.2.19...v0.3.0
 [0.2.19]: https://github.com/brightnucleus/shortcodes/compare/v0.2.18...v0.2.19
 [0.2.18]: https://github.com/brightnucleus/shortcodes/compare/v0.2.17...v0.2.18

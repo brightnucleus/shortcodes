@@ -26,6 +26,7 @@ This is a WordPress shortcodes component that lets you define shortcodes through
     * [Initialization](#initialization)
 * [Using Custom Classes](#using-custom-classes)
 * [Contributing](#contributing)
+* [License](#license)
 
 ## Installation
 
@@ -311,7 +312,8 @@ When using a callable, the arguments that are passed to that callable are the sa
 
 All feedback / bug reports / pull requests are welcome.
 
-Please use the provided `pre-commit` hook. To install it, run the following command from the project's root:
-```BASH
-ln -s ../../.pre-commit .git/hooks/pre-commit
-```
+## License
+
+Copyright (c) 2016 Alain Schlesser, Bright Nucleus
+
+This code is licensed under the [MIT License](LICENSE).

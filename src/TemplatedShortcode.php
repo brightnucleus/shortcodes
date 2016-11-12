@@ -1,13 +1,10 @@
 <?php
 /**
- * Templated Shortcode Implementation.
- *
- * This version of the shortcode uses Gamajo/TemplateLoader to let you override
- * the shortcode views from your theme.
+ * Bright Nucleus Shortcode Component.
  *
  * @package   BrightNucleus\Shortcode
  * @author    Alain Schlesser <alain.schlesser@gmail.com>
- * @license   GPL-2.0+
+ * @license   MIT
  * @link      http://www.brightnucleus.com/
  * @copyright 2015-2016 Alain Schlesser, Bright Nucleus
  */
