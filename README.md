@@ -24,6 +24,7 @@ This is a WordPress shortcodes component that lets you define shortcodes through
     * [Configuration File](#configuration-file)
     * [Template File](#template-file)
     * [Initialization](#initialization)
+* [Using Custom Classes](#using-custom-classes)
 * [Contributing](#contributing)
 
 ## Installation
@@ -74,7 +75,7 @@ $shortcodes_config = [
 		 * You can use this to completely customize the standard shortcode
 		 * class behavior.
 		 * Omit to use default `Shortcode` class.
-		 * NB: Class name needs to be fully qualified.
+		 * This can be either a fully qualified class name or a callable.
 		 */
 		'custom_class' => '\BrightNucleus\Shortcodes\Shortcode',
 
@@ -82,7 +83,7 @@ $shortcodes_config = [
 		 * You can use this to completely customize the way shortcode attributes
 		 * are parsed.
 		 * Omit to use default `ShortcodeAttsParser` class.
-		 * NB: Class name needs to be fully qualified.
+		 * This can be either a fully qualified class name or a callable.
 		 */
 		'custom_atts_parser' => '\BrightNucleus\Shortcodes\ShortcodeAttsParser',
 
@@ -110,6 +111,14 @@ $shortcodes_config = [
 				},
 			],
 		],
+
+		/* Customised ShortcodeUIInterface implementation. (optional)
+		 * You can use this to completely customize the standard shortcode
+		 * user interface class behavior.
+		 * Omit to use default `ShortcodeUI` class.
+		 * This can be either a fully qualified class name or a callable.
+		 */
+		'custom_ui' => '\BrightNucleus\Shortcodes\ShortcodeUI',
 
 		/* Besides one additional keys that ShortcodeManager recognizes, the
 		 * 'ui' subkey gets passed as is to the Shortcake UI plugin.
@@ -285,6 +294,18 @@ $shortcode_manager = new ShortcodeManager(
 // Hook Shortcode Manager up to WordPress action.
 \add_action( 'init', [ $shortcode_manager, 'register' ] );
 ```
+
+## Using Custom Classes
+
+The actual implementations to be used for the following interfaces can be changed through the Config files:
+
+* `BrightNucleus\Shortcode\ShortcodeInterface`
+* `BrightNucleus\Shortcode\ShortcodeAttsParserInterface`
+* `BrightNucleus\Shortcode\ShortcodeUIInterface`
+
+The Config files accepts a key for overriding each of these. You can pass either a fully qualified class name or a callable that acts as a factory.
+
+When using a callable, the arguments that are passed to that callable are the same as the constructor gets for the default implementation of each of these.
 
 ## Contributing
 

@@ -15,6 +15,8 @@ use BrightNucleus\Config\ConfigInterface;
 use BrightNucleus\Config\ConfigTrait;
 use BrightNucleus\Dependency\DependencyManagerInterface as DependencyManager;
 use BrightNucleus\Exception\RuntimeException;
+use BrightNucleus\Shortcode\Exception\FailedToInstantiateObject;
+use Exception;
 
 /**
  * Shortcode Manager.
@@ -57,7 +59,7 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 	 *
 	 * @var ShortcodeInterface[]
 	 */
-	protected $shortcodes = [ ];
+	protected $shortcodes = [];
 
 	/**
 	 * DependencyManagerInterface implementation.
@@ -75,7 +77,7 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 	 *
 	 * @var ShortcodeUIInterface[]
 	 */
-	protected $shortcode_uis = [ ];
+	protected $shortcode_uis = [];
 
 	/**
 	 * Instantiate a ShortcodeManager object.
@@ -114,20 +116,31 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param string $tag The tag of the shortcode to register.
+	 * @param string $tag                The tag of the shortcode to register.
+	 * @throws FailedToInstantiateObject If the Shortcode Atts Parser object
+	 *                                   could not be instantiated.
+	 * @throws FailedToInstantiateObject If the Shortcode object could not be
+	 *                                   instantiated.
 	 */
 	protected function init_shortcode( $tag ) {
 		$shortcode_class       = $this->get_shortcode_class( $tag );
 		$shortcode_atts_parser = $this->get_shortcode_atts_parser_class( $tag );
 
-		$atts_parser        = new $shortcode_atts_parser(
-			$this->config->getSubConfig( $tag )
+		$atts_parser = $this->instantiate(
+			ShortcodeAttsParserInterface::class,
+			$shortcode_atts_parser,
+			[ $this->config->getSubConfig( $tag ) ]
 		);
-		$this->shortcodes[] = new $shortcode_class(
-			$tag,
-			$this->config->getSubConfig( $tag ),
-			$atts_parser,
-			$this->dependencies
+
+		$this->shortcodes[] = $this->instantiate(
+			ShortcodeInterface::class,
+			$shortcode_class,
+			[
+				$tag,
+				$this->config->getSubConfig( $tag ),
+				$atts_parser,
+				$this->dependencies,
+			]
 		);
 
 		if ( $this->hasConfigKey( $tag, self::KEY_UI ) ) {
@@ -171,15 +184,22 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param string $tag The tag of the shortcode to register the UI for.
+	 * @param string $tag                The tag of the shortcode to register
+	 *                                   the UI for.
+	 * @throws FailedToInstantiateObject If the Shortcode UI object could not
+	 *                                   be instantiated.
 	 */
 	protected function init_shortcode_ui( $tag ) {
 		$shortcode_ui_class = $this->get_shortcode_ui_class( $tag );
 
-		$this->shortcode_uis[] = new $shortcode_ui_class(
-			$tag,
-			$this->config->getSubConfig( $tag, self::KEY_UI ),
-			$this->dependencies
+		$this->shortcode_uis[] = $this->instantiate(
+			ShortcodeUIInterface::class,
+			$shortcode_ui_class,
+			[
+				$tag,
+				$this->config->getSubConfig( $tag, self::KEY_UI ),
+				$this->dependencies,
+			]
 		);
 	}
 
@@ -279,7 +299,43 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 	 * @param null   $content Inner content to pass to the shortcode.
 	 * @return string|false Rendered HTML.
 	 */
-	public function do_tag( $tag, array $atts = [ ], $content = null ) {
+	public function do_tag( $tag, array $atts = [], $content = null ) {
 		\BrightNucleus\Shortcode\do_tag( $tag, $atts, $content );
+	}
+
+	/**
+	 * Instantiate a new object through either a class name or a factory method.
+	 *
+	 * @since 0.3.0
+	 *
+	 * @param string          $interface Interface the object needs to
+	 *                                   implement.
+	 * @param callable|string $class     Fully qualified class name or factory
+	 *                                   method.
+	 * @param array           $args      Arguments passed to the constructor or
+	 *                                   factory method.
+	 * @return object Object that implements the interface.
+	 * @throws FailedToInstantiateObject If no valid object could be
+	 *                                   instantiated.
+	 */
+	protected function instantiate( $interface, $class, array $args ) {
+		try {
+			if ( is_callable( $class ) ) {
+				$class = call_user_func_array( $class, $args );
+			}
+
+			if ( is_string( $class ) ) {
+				$class = call_user_func_array( $class, $args );
+			}
+		} catch ( Exception $exception ) {
+			throw FailedToInstantiateObject::fromFactory( $class, $interface );
+		}
+
+		if ( ! $class instanceof $interface ) {
+			throw FailedToInstantiateObject::fromInvalidObject( $class,
+				$interface );
+		}
+
+		return $class;
 	}
 }
