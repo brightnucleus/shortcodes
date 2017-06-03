@@ -345,7 +345,11 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 				$class = $this->instantiateClass( $class, $args );
 			}
 		} catch ( Exception $exception ) {
-			throw FailedToInstantiateObject::fromFactory( $class, $interface );
+			throw FailedToInstantiateObject::fromFactory(
+				$class,
+				$interface,
+				$exception
+			);
 		}
 
 		if ( ! is_subclass_of( $class, $interface ) ) {
