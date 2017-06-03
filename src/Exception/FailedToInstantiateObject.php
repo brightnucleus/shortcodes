@@ -12,6 +12,7 @@
 namespace BrightNucleus\Shortcode\Exception;
 
 use BrightNucleus\Exception\RuntimeException;
+use Exception;
 
 /**
  * Class FailedToInstantiateObject.
@@ -28,32 +29,41 @@ class FailedToInstantiateObject extends RuntimeException implements ShortcodeExc
 	 *
 	 * @since 0.3.0
 	 *
-	 * @param mixed  $factory   Class name or factory callable.
-	 * @param string $interface Interface name that the object should have
-	 *                          implemented.
+	 * @param mixed     $factory   Class name or factory callable.
+	 * @param string    $interface Interface name that the object should have
+	 *                             implemented.
+	 * @param Exception $exception Exception that was caught.
 	 * @return static Instance of an exception.
 	 */
-	public static function fromFactory( $factory, $interface ) {
+	public static function fromFactory( $factory, $interface, $exception = null ) {
+		$reason = $exception instanceof Exception
+			? " Reason: {$exception->getMessage()}"
+			: '';
+
 		if ( is_callable( $factory ) ) {
 			$message = sprintf(
-				'Could not instantiate object of type "%1$s" from factory of type: "%2$s".',
+				'Could not instantiate object of type "%1$s" from factory of type: "%2$s".%3$s',
 				$interface,
-				gettype( $factory )
+				gettype( $factory ),
+				$reason
 			);
 		} elseif ( is_string( $factory ) ) {
 			$message = sprintf(
-				'Could not instantiate object of type "%1$s" from class name: "%2$s".',
+				'Could not instantiate object of type "%1$s" from class name: "%2$s".%3$s',
 				$interface,
-				$factory
+				$factory,
+				$reason
 			);
 		} else {
 			$message = sprintf(
-				'Could not instantiate object of type "%1$s" from invalid argument of type: "%2$s".',
+				'Could not instantiate object of type "%1$s" from invalid argument of type: "%2$s".%3$s',
 				$interface,
-				$factory
+				$factory,
+				$reason
 			);
 		}
-		return new static( $message );
+
+		return new static( $message, 0, $exception );
 	}
 
 	/**
