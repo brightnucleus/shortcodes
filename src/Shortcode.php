@@ -11,7 +11,8 @@
 
 namespace BrightNucleus\Shortcode;
 
-use BrightNucleus\Config\ConfigInterface;
+use BrightNucleus\Config\ConfigInterface as Config;
+use BrightNucleus\Shortcode\ShortcodeAttsParserInterface as ShortcodeAttsParser;
 use BrightNucleus\Config\ConfigTrait;
 use BrightNucleus\Dependency\DependencyManagerInterface as DependencyManager;
 use BrightNucleus\Exception\DomainException;
@@ -76,7 +77,7 @@ class Shortcode implements ShortcodeInterface {
 	 *
 	 * @param string                 $shortcode_tag Tag that identifies the
 	 *                                              shortcode.
-	 * @param ConfigInterface        $config        Configuration settings.
+	 * @param Config                 $config        Configuration settings.
 	 * @param ShortcodeAttsParser    $atts_parser   Attributes parser and
 	 *                                              validator.
 	 * @param DependencyManager|null $dependencies  Optional. Dependencies of
@@ -85,7 +86,7 @@ class Shortcode implements ShortcodeInterface {
 	 */
 	public function __construct(
 		$shortcode_tag,
-		ConfigInterface $config,
+		Config $config,
 		ShortcodeAttsParser $atts_parser,
 		DependencyManager $dependencies = null
 	) {

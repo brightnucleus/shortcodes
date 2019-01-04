@@ -1,11 +1,6 @@
 {
 	"name": "brightnucleus/shortcodes",
 	"description": "Config-driven WordPress shortcodes.",
-	"require-dev": {
-		"phpunit/phpunit": "~4",
-		"squizlabs/php_codesniffer": "~2.5",
-		"wp-coding-standards/wpcs": "dev-master"
-	},
 	"license": "MIT",
 	"authors": [
 		{
@@ -20,6 +15,9 @@
 		"brightnucleus/contracts": ">=0.1",
 		"gamajo/template-loader": ">=1.2",
 		"brightnucleus/invoker": ">=0.2.0"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "~6"
 	},
 	"autoload": {
 		"psr-4": {
