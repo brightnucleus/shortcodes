@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.4.0] - 2019-01-04
+### Changed
+- Switched to PHPUnit v6+ and add basic tests.
+- Uses `brightnucleus/view` for rendering shortcode views.
+
+### Fixed
+- Add missing returns.
+
 ## [0.3.2] - 2017-06-03
 ### Changed
 - Added information about the caught exception when instantiation failed.
@@ -140,6 +148,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial release to GitHub.
 
+[0.4.0]: https://github.com/brightnucleus/shortcodes/compare/v0.3.2...v0.4.0
 [0.3.2]: https://github.com/brightnucleus/shortcodes/compare/v0.3.1...v0.3.2
 [0.3.1]: https://github.com/brightnucleus/shortcodes/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/brightnucleus/shortcodes/compare/v0.2.19...v0.3.0
