@@ -17,6 +17,8 @@ use BrightNucleus\Config\ConfigTrait;
 use BrightNucleus\Dependency\DependencyManagerInterface as DependencyManager;
 use BrightNucleus\Exception\DomainException;
 use BrightNucleus\Exception\RuntimeException;
+use BrightNucleus\View\ViewBuilder;
+use BrightNucleus\Views;
 
 /**
  * Base Implementation of the Shortcode Interface.
@@ -62,6 +64,15 @@ class Shortcode implements ShortcodeInterface {
 	protected $dependencies;
 
 	/**
+	 * View builder instance to use for creating views to render.
+	 *
+	 * @since 0.4.0
+	 *
+	 * @var ViewBuilder
+	 */
+	protected $view_builder;
+
+	/**
 	 * Cache context information so we can pass it on to the render() method.
 	 *
 	 * @var
@@ -74,6 +85,7 @@ class Shortcode implements ShortcodeInterface {
 	 * Instantiate Basic Shortcode.
 	 *
 	 * @since 0.1.0
+	 * @since 0.4.0 Added optional $view_builder argument.
 	 *
 	 * @param string                 $shortcode_tag Tag that identifies the
 	 *                                              shortcode.
@@ -82,13 +94,16 @@ class Shortcode implements ShortcodeInterface {
 	 *                                              validator.
 	 * @param DependencyManager|null $dependencies  Optional. Dependencies of
 	 *                                              the shortcode.
+	 * @param ViewBuilder|null       $view_builder  Optional. View builder
+	 *                                              instance to use.
 	 * @throws RuntimeException If the config could not be processed.
 	 */
 	public function __construct(
 		$shortcode_tag,
 		Config $config,
 		ShortcodeAttsParser $atts_parser,
-		DependencyManager $dependencies = null
+		DependencyManager $dependencies = null,
+		ViewBuilder $view_builder = null
 	) {
 
 		$this->processConfig( $config );
@@ -96,6 +111,7 @@ class Shortcode implements ShortcodeInterface {
 		$this->shortcode_tag = $shortcode_tag;
 		$this->atts_parser   = $atts_parser;
 		$this->dependencies  = $dependencies;
+		$this->view_builder  = $view_builder ?? Views::getViewBuilder();
 	}
 
 	/**
@@ -205,21 +221,22 @@ class Shortcode implements ShortcodeInterface {
 	 *
 	 * @since 0.2.6
 	 *
-	 * @param string      $view    The view to render.
+	 * @param string      $uri     URI of the view to render.
 	 * @param mixed       $context The context to pass through to the view.
 	 * @param array       $atts    The shortcode attribute values to pass
 	 *                             through to the view.
 	 * @param string|null $content Optional. The inner content of the shortcode.
 	 * @return string HTML rendering of the view.
 	 */
-	protected function render_view( $view, $context, $atts, $content = null ) {
-		if ( empty( $view ) ) {
-			return '';
-		}
-
-		ob_start();
-		include( $view );
-		return ob_get_clean();
+	protected function render_view( $uri, $context, $atts, $content = null ) {
+		return $this->view_builder
+			->create( $uri )
+			->render(
+				array_merge(
+					(array) $context,
+					(array) $atts,
+					(array) $content )
+			);
 	}
 
 	/**

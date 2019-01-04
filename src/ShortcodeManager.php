@@ -17,6 +17,8 @@ use BrightNucleus\Dependency\DependencyManagerInterface as DependencyManager;
 use BrightNucleus\Exception\RuntimeException;
 use BrightNucleus\Invoker\InstantiatorTrait;
 use BrightNucleus\Shortcode\Exception\FailedToInstantiateObject;
+use BrightNucleus\View\ViewBuilder;
+use BrightNucleus\Views;
 use Exception;
 
 /**
@@ -73,6 +75,15 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 	protected $dependencies;
 
 	/**
+	 * View builder instance to use for rendering views.
+	 *
+	 * @since 0.4.0
+	 *
+	 * @var ViewBuilder
+	 */
+	protected $view_builder;
+
+	/**
 	 * Collection of ShortcodeUIInterface objects.
 	 *
 	 * @since 0.1.0
@@ -85,20 +96,27 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 	 * Instantiate a ShortcodeManager object.
 	 *
 	 * @since 0.1.0
+	 * @since 0.4.0 Add optional $viewBuilder argument.
 	 *
 	 * @param ConfigInterface        $config       Configuration to set up the
 	 *                                             shortcodes.
 	 * @param DependencyManager|null $dependencies Optional. Dependencies that
-	 *                                             are needed by the shortcodes.
+	 *                                             are needed by the
+	 *                                             shortcodes.
+	 * @param ViewBuilder|null       $view_builder Optional. View builder
+	 *                                             instance to use for
+	 *                                             rendering views.
 	 *
 	 * @throws RuntimeException If the config could not be processed.
 	 */
 	public function __construct(
 		ConfigInterface $config,
-		DependencyManager $dependencies = null
+		DependencyManager $dependencies = null,
+		ViewBuilder $view_builder = null
 	) {
 		$this->processConfig( $config );
 		$this->dependencies = $dependencies;
+		$this->view_builder = $view_builder ?? Views::getViewBuilder();
 
 		$this->init_shortcodes();
 	}
@@ -144,6 +162,7 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 				'config'        => $this->config->getSubConfig( $tag ),
 				'atts_parser'   => $atts_parser,
 				'dependencies'  => $this->dependencies,
+				'view_builder'  => $this->view_builder,
 			]
 		);
 

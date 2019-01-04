@@ -4,6 +4,8 @@ namespace BrightNucleus\Shortcode;
 
 use BrightNucleus\Config\ConfigFactory;
 use BrightNucleus\Config\ConfigInterface;
+use BrightNucleus\View\Location\FilesystemLocation;
+use BrightNucleus\View\ViewBuilder;
 use PHPUnit\Framework\TestCase;
 
 final class ShortcodeTest extends TestCase {
@@ -25,6 +27,24 @@ final class ShortcodeTest extends TestCase {
 		$attsParser = $this->createMock( ShortcodeAttsParser::class );
 
 		$shortcode = new Shortcode( 'some_tag', $config, $attsParser );
+
+		$output = $shortcode->render( [] );
+
+		$this->assertStringStartsWith(
+			'<p>This is a dynamic view with <code>PHP code</code></p>',
+			$output
+		);
+	}
+
+	public function test_it_can_use_a_separate_view_builder() {
+		$config      = ConfigFactory::createFromArray(
+			[ 'view' => 'some_dynamic_view' ]
+		);
+		$attsParser  = $this->createMock( ShortcodeAttsParser::class );
+		$viewBuilder = ( new ViewBuilder() )
+			->addLocation( new FilesystemLocation( __DIR__ . '/../fixtures' ) );
+
+		$shortcode = new Shortcode( 'some_tag', $config, $attsParser, null, $viewBuilder );
 
 		$output = $shortcode->render( [] );
 
