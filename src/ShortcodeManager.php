@@ -335,7 +335,7 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 	 * @return string|false Rendered HTML.
 	 */
 	public function do_tag( $tag, array $atts = [], $content = null ) {
-		\BrightNucleus\Shortcode\do_tag( $tag, $atts, $content );
+		return \BrightNucleus\Shortcode\do_tag( $tag, $atts, $content );
 	}
 
 	/**
