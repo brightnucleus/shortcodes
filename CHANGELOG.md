@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.4.1] - 2019-01-05
+### Added
+- Added `Shortcode::add_context()` method.
+
 ## [0.4.0] - 2019-01-04
 ### Changed
 - Switched to PHPUnit v6+ and add basic tests.
@@ -148,6 +152,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial release to GitHub.
 
+[0.4.1]: https://github.com/brightnucleus/shortcodes/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/brightnucleus/shortcodes/compare/v0.3.2...v0.4.0
 [0.3.2]: https://github.com/brightnucleus/shortcodes/compare/v0.3.1...v0.3.2
 [0.3.1]: https://github.com/brightnucleus/shortcodes/compare/v0.3.0...v0.3.1

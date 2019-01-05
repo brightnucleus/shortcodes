@@ -319,6 +319,12 @@ Once you've added one or more locations in this way, you can use relative URIs i
 
 Refer to the [`brightnucleus/view` documentation](https://github.com/brightnucleus/view/blob/master/README.md) on how to go about configuring a `ViewBuilder` instance.
 
+## Adding Additional Context
+
+The default implementation allows you to `add_context()` to the shortcode, which will then also be passed to the view to be rendered.
+
+This can be with a dependency injector, for example, to further prepare a shortcode with additional data after it has already been instantiated.
+
 ## Contributing
 
 All feedback / bug reports / pull requests are welcome.

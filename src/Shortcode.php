@@ -132,6 +132,19 @@ class Shortcode implements ShortcodeInterface {
 	}
 
 	/**
+	 * Add additional context to the shortcode.
+	 *
+	 * This can be used to pass more data to the view to be rendered.
+	 *
+	 * This is especially useful for additional preparation through a DI.
+	 *
+	 * @param array $context Associative array of context information to add.
+	 */
+	public function add_context( array $context ) {
+		$this->context = array_merge( $this->context, $context );
+	}
+
+	/**
 	 * Get the shortcode tag.
 	 *
 	 * @since 0.1.0
