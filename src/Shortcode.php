@@ -79,7 +79,7 @@ class Shortcode implements ShortcodeInterface {
 	 *
 	 * @since 0.2.3
 	 */
-	protected $context;
+	protected $context = [];
 
 	/**
 	 * Instantiate Basic Shortcode.
@@ -123,10 +123,13 @@ class Shortcode implements ShortcodeInterface {
 	 * @return void
 	 */
 	public function register( $context = null ) {
-		if ( ! $this->is_needed( $context ) ) {
+		if ( null !== $context ) {
+			$this->add_context( $context );
+		}
+
+		if ( ! $this->is_needed( $this->context ) ) {
 			return;
 		}
-		$this->context = $context;
 
 		\add_shortcode( $this->get_tag(), [ $this, 'render' ] );
 	}
@@ -140,8 +143,10 @@ class Shortcode implements ShortcodeInterface {
 	 *
 	 * @param array $context Associative array of context information to add.
 	 */
-	public function add_context( array $context ) {
-		$this->context = array_merge( $this->context, $context );
+	public function add_context( $context ) {
+		$this->context = array_filter(
+			array_merge( (array) $this->context, (array) $context )
+		);
 	}
 
 	/**
@@ -171,13 +176,12 @@ class Shortcode implements ShortcodeInterface {
 	 * @return string              The shortcode's HTML output.
 	 */
 	public function render( $atts, $content = null, $tag = null ) {
-		$context = $this->context;
 		$atts    = $this->atts_parser->parse_atts( $atts, $this->get_tag() );
 		$this->enqueue_dependencies( $this->get_dependency_handles(), $atts );
 
 		return $this->render_view(
 			$this->get_view(),
-			$context,
+			$this->context,
 			$atts,
 			$content
 		);
@@ -192,6 +196,10 @@ class Shortcode implements ShortcodeInterface {
 	 * @param mixed $context Optional. Context in which to enqueue.
 	 */
 	protected function enqueue_dependencies( $handles, $context = null ) {
+		if ( null !== $context ) {
+			$this->add_context( $context );
+		}
+
 		if ( ! $this->dependencies || count( $handles ) < 1 ) {
 			return;
 		}
@@ -199,7 +207,7 @@ class Shortcode implements ShortcodeInterface {
 		foreach ( $handles as $handle ) {
 			$found = $this->dependencies->enqueue_handle(
 				$handle,
-				$context,
+				$this->context,
 				true
 			);
 			if ( ! $found ) {

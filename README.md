@@ -26,6 +26,8 @@ This is a WordPress shortcodes component that lets you define shortcodes through
     * [Initialization](#initialization)
 * [Using Custom Classes](#using-custom-classes)
 * [Using Relative Views](#using-relative-views)
+* [Adding Additional Context](#adding-additional-context)
+* [Using An External DI](#using-an-external-di)
 * [Contributing](#contributing)
 * [License](#license)
 
@@ -324,6 +326,12 @@ Refer to the [`brightnucleus/view` documentation](https://github.com/brightnucle
 The default implementation allows you to `add_context()` to the shortcode, which will then also be passed to the view to be rendered.
 
 This can be with a dependency injector, for example, to further prepare a shortcode with additional data after it has already been instantiated.
+
+## Using An External DI
+
+To use an external dependency injector with the default `Shortcode` implementation, you can pass an object to the `Shortcode::with_injector()` method that provides a `make( $class, $args )` method.
+
+You might need to provide an adapter to modify the `$args` argument as needed.
 
 ## Contributing
 

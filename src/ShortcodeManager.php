@@ -18,7 +18,6 @@ use BrightNucleus\Exception\RuntimeException;
 use BrightNucleus\Invoker\InstantiatorTrait;
 use BrightNucleus\Shortcode\Exception\FailedToInstantiateObject;
 use BrightNucleus\View\ViewBuilder;
-use BrightNucleus\Views;
 use Exception;
 
 /**
@@ -93,6 +92,13 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 	protected $shortcode_uis = [];
 
 	/**
+	 * External injector to use.
+	 *
+	 * @var object
+	 */
+	protected $injector;
+
+	/**
 	 * Instantiate a ShortcodeManager object.
 	 *
 	 * @since 0.1.0
@@ -117,8 +123,22 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 		$this->processConfig( $config );
 		$this->dependencies = $dependencies;
 		$this->view_builder = $view_builder ?? Views::getViewBuilder();
+	}
 
-		$this->init_shortcodes();
+	/**
+	 * Use an external injector to instantiate the different classes.
+	 *
+	 * The injector will
+	 * @param object $injector Injector to use.
+	 */
+	public function with_injector( $injector ) {
+		if ( ! method_exists( $injector, 'make' ) ) {
+			throw new RuntimeException(
+				'Invalid injector provided, it does not have a make() method.'
+			);
+		}
+
+		$this->injector = $injector;
 	}
 
 	/**
@@ -258,6 +278,8 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 	 * @return void
 	 */
 	public function register( $context = null ) {
+		$this->init_shortcodes();
+
 		$context                  = $this->validate_context( $context );
 		$context['page_template'] = $this->get_page_template();
 
@@ -361,7 +383,11 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 			}
 
 			if ( is_string( $class ) ) {
-				$class = $this->instantiateClass( $class, $args );
+				if ( null !== $this->injector ) {
+					$class = $this->injector->make( $class, $args );
+				} else {
+					$class = $this->instantiateClass( $class, $args );
+				}
 			}
 		} catch ( Exception $exception ) {
 			throw FailedToInstantiateObject::fromFactory(
