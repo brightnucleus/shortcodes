@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.4.3] - 2019-01-17
+### Added
+- Added `Shortcode::prepare_context( array $context ): array` to allow for easy context manipulation in extending classes.
+
 ## [0.4.2] - 2019-01-05
 ### Added
 - Added `Shortcode::with_injector()` method to allow for the use of an external injector.
@@ -159,6 +163,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial release to GitHub.
 
+[0.4.3]: https://github.com/brightnucleus/shortcodes/compare/v0.4.2...v0.4.3
 [0.4.2]: https://github.com/brightnucleus/shortcodes/compare/v0.4.1...v0.4.2
 [0.4.1]: https://github.com/brightnucleus/shortcodes/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/brightnucleus/shortcodes/compare/v0.3.2...v0.4.0
