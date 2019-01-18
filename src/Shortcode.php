@@ -250,7 +250,7 @@ class Shortcode implements ShortcodeInterface {
 	 * @return string HTML rendering of the view.
 	 */
 	protected function render_view( $uri, $context, $atts, $content = null ) {
-		$context = $this->prepare_context( $context );
+		$context = $this->prepare_context( $context, $atts );
 
 		return $this->view_builder
 			->create( $uri )
@@ -267,9 +267,10 @@ class Shortcode implements ShortcodeInterface {
 	 * Do additional preparations on the context before rendering.
 	 *
 	 * @param array $context Context to prepare.
+	 * @param array $atts    Array of attributes passed to the shortcode.
 	 * @return array Prepared context.
 	 */
-	protected function prepare_context( array $context ): array {
+	protected function prepare_context( array $context, array $atts ): array {
 		return $context;
 	}
 
