@@ -18,6 +18,7 @@ use BrightNucleus\Exception\RuntimeException;
 use BrightNucleus\Invoker\InstantiatorTrait;
 use BrightNucleus\Shortcode\Exception\FailedToInstantiateObject;
 use BrightNucleus\View\ViewBuilder;
+use BrightNucleus\Views;
 use Exception;
 
 /**
