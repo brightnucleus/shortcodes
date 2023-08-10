@@ -380,7 +380,7 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 	protected function instantiate( $interface, $class, array $args ) {
 		try {
 			if ( is_callable( $class ) ) {
-				$class = call_user_func_array( $class, $args );
+				$class = call_user_func_array( $class, array_values( $args ) );
 			}
 
 			if ( is_string( $class ) ) {
