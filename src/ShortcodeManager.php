@@ -118,8 +118,8 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 	 */
 	public function __construct(
 		ConfigInterface $config,
-		DependencyManager $dependencies = null,
-		ViewBuilder $view_builder = null
+		?DependencyManager $dependencies = null,
+		?ViewBuilder $view_builder = null
 	) {
 		$this->processConfig( $config );
 		$this->dependencies = $dependencies;
@@ -130,7 +130,9 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 	 * Use an external injector to instantiate the different classes.
 	 *
 	 * The injector will
+	 *
 	 * @param object $injector Injector to use.
+	 * @throws RuntimeException If the injector doesn't have a make() method.
 	 */
 	public function with_injector( $injector ) {
 		if ( ! method_exists( $injector, 'make' ) ) {
@@ -284,15 +286,17 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 		$context                  = $this->validate_context( $context );
 		$context['page_template'] = $this->get_page_template();
 
-		array_walk( $this->shortcodes,
+		array_walk(
+			$this->shortcodes,
 			function ( ShortcodeInterface $shortcode ) use ( $context ) {
 				$shortcode->register( $context );
-			} );
+			}
+		);
 
 		// This hook only gets fired when Shortcode UI plugin is active.
 		\add_action(
 			'register_shortcode_ui',
-			[ $this, 'register_shortcode_ui', ]
+			[ $this, 'register_shortcode_ui' ]
 		);
 	}
 
@@ -339,7 +343,8 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 		$template = $this->get_page_template();
 		$context  = [ 'page_template' => $template ];
 
-		array_walk( $this->shortcode_uis,
+		array_walk(
+			$this->shortcode_uis,
 			function ( ShortcodeUIInterface $shortcode_ui ) use ( $context ) {
 				$shortcode_ui->register( $context );
 			}
@@ -366,45 +371,49 @@ class ShortcodeManager implements ShortcodeManagerInterface {
 	 *
 	 * @since 0.3.0
 	 *
-	 * @param string          $interface Interface the object needs to
-	 *                                   implement.
-	 * @param callable|string $class     Fully qualified class name or factory
-	 *                                   method.
-	 * @param array           $args      Arguments passed to the constructor or
-	 *                                   factory method.
+	 * @param string          $interface_name Interface the object needs to
+	 *                                        implement.
+	 * @param callable|string $class_name     Fully qualified class name or factory
+	 *                                        method.
+	 * @param array           $args           Arguments passed to the constructor or
+	 *                                        factory method.
 	 *
 	 * @return object Object that implements the interface.
 	 * @throws FailedToInstantiateObject If no valid object could be
 	 *                                   instantiated.
 	 */
-	protected function instantiate( $interface, $class, array $args ) {
+	protected function instantiate( $interface_name, $class_name, array $args ) {
 		try {
-			if ( is_callable( $class ) ) {
-				$class = call_user_func_array( $class, $args );
+			if ( is_callable( $class_name ) ) {
+				$class_name = call_user_func_array( $class_name, $args );
 			}
 
-			if ( is_string( $class ) ) {
+			if ( is_string( $class_name ) ) {
 				if ( null !== $this->injector ) {
-					$class = $this->injector->make( $class, $args );
+					$class_name = $this->injector->make( $class_name, $args );
 				} else {
-					$class = $this->instantiateClass( $class, $args );
+					$class_name = $this->instantiateClass( $class_name, $args );
 				}
 			}
 		} catch ( Exception $exception ) {
+			// phpcs:disable WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception parameters don't need escaping
 			throw FailedToInstantiateObject::fromFactory(
-				$class,
-				$interface,
+				$class_name,
+				$interface_name,
 				$exception
 			);
+			// phpcs:enable WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		}
 
-		if ( ! is_subclass_of( $class, $interface ) ) {
+		if ( ! is_subclass_of( $class_name, $interface_name ) ) {
+			// phpcs:disable WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception parameters don't need escaping
 			throw FailedToInstantiateObject::fromInvalidObject(
-				$class,
-				$interface
+				$class_name,
+				$interface_name
 			);
+			// phpcs:enable WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		}
 
-		return $class;
+		return $class_name;
 	}
 }

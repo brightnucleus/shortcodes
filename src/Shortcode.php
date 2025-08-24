@@ -75,7 +75,7 @@ class Shortcode implements ShortcodeInterface {
 	/**
 	 * Cache context information so we can pass it on to the render() method.
 	 *
-	 * @var
+	 * @var array
 	 *
 	 * @since 0.2.3
 	 */
@@ -102,8 +102,8 @@ class Shortcode implements ShortcodeInterface {
 		$shortcode_tag,
 		Config $config,
 		ShortcodeAttsParser $atts_parser,
-		DependencyManager $dependencies = null,
-		ViewBuilder $view_builder = null
+		?DependencyManager $dependencies = null,
+		?ViewBuilder $view_builder = null
 	) {
 
 		$this->processConfig( $config );
@@ -165,7 +165,7 @@ class Shortcode implements ShortcodeInterface {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @throws DomainException
+	 * @throws DomainException If the shortcode cannot be rendered.
 	 *
 	 * @param array       $atts    Attributes to modify the standard behavior
 	 *                             of the shortcode.
@@ -176,7 +176,7 @@ class Shortcode implements ShortcodeInterface {
 	 * @return string              The shortcode's HTML output.
 	 */
 	public function render( $atts, $content = null, $tag = null ) {
-		$atts    = $this->atts_parser->parse_atts( $atts, $this->get_tag() );
+		$atts = $this->atts_parser->parse_atts( $atts, $this->get_tag() );
 		$this->enqueue_dependencies( $this->get_dependency_handles(), $atts );
 
 		return $this->render_view(
@@ -212,15 +212,18 @@ class Shortcode implements ShortcodeInterface {
 			);
 			if ( ! $found ) {
 				$message = sprintf(
-					__( 'Could not enqueue dependency "%1$s" for shortcode "%2$s".',
-						'bn-shortcodes' ),
+					/* translators: %1$s: dependency handle, %2$s: shortcode tag */
+					__(
+						'Could not enqueue dependency "%1$s" for shortcode "%2$s".',
+						'bn-shortcodes'
+					),
 					$handle,
 					$this->get_tag()
 				);
-				trigger_error( $message, E_USER_WARNING );
+				// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error -- User warnings are acceptable for dependency issues
+				trigger_error( esc_html( $message ), E_USER_WARNING );
 			}
 		}
-
 	}
 
 	/**
@@ -232,7 +235,7 @@ class Shortcode implements ShortcodeInterface {
 	 */
 	protected function get_dependency_handles() {
 		if ( ! $this->hasConfigKey( 'dependencies' ) ) {
-			return [ ];
+			return [];
 		}
 		return (array) $this->getConfigKey( 'dependencies' );
 	}
@@ -299,7 +302,7 @@ class Shortcode implements ShortcodeInterface {
 	 * @param string|null $content Inner content to pass to the shortcode.
 	 * @return string|false Rendered HTML.
 	 */
-	public function do_this( array $atts = [ ], $content = null ) {
+	public function do_this( array $atts = [], $content = null ) {
 		return \BrightNucleus\Shortcode\do_tag( $this->get_tag(), $atts, $content );
 	}
 }

@@ -1,2 +1,12 @@
 vendor/
 composer.lock
+.phpunit.cache/
+.phpunit.result.cache
+clover.xml
+
+# WordPress Environment
+.wp-env.json
+.wp-env/
+docker-compose.yml
+phpunit-standalone.xml
+tests/bootstrap-standalone.php

@@ -54,6 +54,7 @@ trait CheckNeedTrait {
 	 * @param string|array $_ List of keys.
 	 * @return bool Whether the key is known.
 	 */
+	// phpcs:ignore WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid,Squiz.Commenting.FunctionComment.Missing -- Must match ConfigTrait interface
 	abstract protected function hasConfigKey( $_ );
 
 	/**
@@ -66,5 +67,6 @@ trait CheckNeedTrait {
 	 * @param string|array $_ List of keys.
 	 * @return mixed Value of the key.
 	 */
+	// phpcs:ignore WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid,Squiz.Commenting.FunctionComment.Missing -- Must match ConfigTrait interface
 	abstract protected function getConfigKey( $_ );
 }

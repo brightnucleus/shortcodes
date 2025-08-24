@@ -44,5 +44,5 @@ interface ShortcodeManagerInterface extends Registerable {
 	 * @param string|null $content Inner content to pass to the shortcode.
 	 * @return string|false Rendered HTML.
 	 */
-	public function do_tag( $tag, array $atts = [ ], $content = null );
+	public function do_tag( $tag, array $atts = [], $content = null );
 }

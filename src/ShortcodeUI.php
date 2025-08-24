@@ -61,7 +61,7 @@ class ShortcodeUI implements ShortcodeUIInterface {
 	public function __construct(
 		$shortcode_tag,
 		ConfigInterface $config,
-		DependencyManager $dependencies = null
+		?DependencyManager $dependencies = null
 	) {
 		$this->processConfig( $config );
 

@@ -29,13 +29,13 @@ class FailedToInstantiateObject extends RuntimeException implements ShortcodeExc
 	 *
 	 * @since 0.3.0
 	 *
-	 * @param mixed     $factory   Class name or factory callable.
-	 * @param string    $interface Interface name that the object should have
-	 *                             implemented.
-	 * @param Exception $exception Exception that was caught.
+	 * @param mixed     $factory        Class name or factory callable.
+	 * @param string    $interface_name Interface name that the object should have
+	 *                                  implemented.
+	 * @param Exception $exception      Exception that was caught.
 	 * @return static Instance of an exception.
 	 */
-	public static function fromFactory( $factory, $interface, $exception = null ) {
+	public static function fromFactory( $factory, $interface_name, $exception = null ) {
 		$reason = $exception instanceof Exception
 			? " Reason: {$exception->getMessage()}"
 			: '';
@@ -43,21 +43,21 @@ class FailedToInstantiateObject extends RuntimeException implements ShortcodeExc
 		if ( is_callable( $factory ) ) {
 			$message = sprintf(
 				'Could not instantiate object of type "%1$s" from factory of type: "%2$s".%3$s',
-				$interface,
+				$interface_name,
 				gettype( $factory ),
 				$reason
 			);
 		} elseif ( is_string( $factory ) ) {
 			$message = sprintf(
 				'Could not instantiate object of type "%1$s" from class name: "%2$s".%3$s',
-				$interface,
+				$interface_name,
 				$factory,
 				$reason
 			);
 		} else {
 			$message = sprintf(
 				'Could not instantiate object of type "%1$s" from invalid argument of type: "%2$s".%3$s',
-				$interface,
+				$interface_name,
 				$factory,
 				$reason
 			);
@@ -72,15 +72,15 @@ class FailedToInstantiateObject extends RuntimeException implements ShortcodeExc
 	 *
 	 * @since 0.3.0
 	 *
-	 * @param mixed  $factory   Class name or factory callable.
-	 * @param string $interface Interface name that the object should have
-	 *                          implemented.
+	 * @param mixed  $factory        Class name or factory callable.
+	 * @param string $interface_name Interface name that the object should have
+	 *                               implemented.
 	 * @return static Instance of an exception.
 	 */
-	public static function fromInvalidObject( $factory, $interface ) {
+	public static function fromInvalidObject( $factory, $interface_name ) {
 		$message = sprintf(
 			'Could not instantiate object of type "%1$s", got "%2$s" instead.',
-			$interface,
+			$interface_name,
 			$factory
 		);
 		return new static( $message );

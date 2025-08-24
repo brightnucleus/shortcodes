@@ -54,7 +54,7 @@ class TemplatedShortcode extends Shortcode {
 		$shortcode_tag,
 		Config $config,
 		ShortcodeAttsParser $atts_parser,
-		DependencyManager $dependencies = null
+		?DependencyManager $dependencies = null
 	) {
 
 		parent::__construct(

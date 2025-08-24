@@ -46,7 +46,7 @@ class ShortcodeAttsParser implements ShortcodeAttsParserInterface {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param  array $atts Attributes passed to the shortcode.
+	 * @param  array  $atts Attributes passed to the shortcode.
 	 * @param string $tag  Tag of the shortcode.
 	 * @return array       Validated attributes of the shortcode.
 	 */
@@ -69,14 +69,15 @@ class ShortcodeAttsParser implements ShortcodeAttsParserInterface {
 	 */
 	protected function default_atts() {
 
-		$atts = array();
+		$atts = [];
 
 		if ( ! $this->hasConfigKey( 'atts' ) ) {
 			return $atts;
 		}
 
 		$atts_config = $this->getConfigKey( 'atts' );
-		array_walk( $atts_config,
+		array_walk(
+			$atts_config,
 			function ( $att_properties, $att_label ) use ( &$atts ) {
 				$atts[ $att_label ] = $att_properties['default'];
 			}
@@ -101,7 +102,8 @@ class ShortcodeAttsParser implements ShortcodeAttsParserInterface {
 		}
 
 		$atts_config = $this->getConfigKey( 'atts' );
-		array_walk( $atts_config,
+		array_walk(
+			$atts_config,
 			function ( $att_properties, $att_label ) use ( &$atts ) {
 				if ( array_key_exists( $att_label, $atts ) ) {
 					$validate_function  = $att_properties['validate'];

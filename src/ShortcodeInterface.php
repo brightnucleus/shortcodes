@@ -53,5 +53,5 @@ interface ShortcodeInterface extends Registerable {
 	 * @param string|null $content Inner content to pass to the shortcode.
 	 * @return string|false Rendered HTML.
 	 */
-	public function do_this( array $atts = [ ], $content = null );
+	public function do_this( array $atts = [], $content = null );
 }
